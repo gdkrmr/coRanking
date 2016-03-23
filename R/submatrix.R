@@ -1,7 +1,8 @@
 ## upper left part
 cm.UL_K <- function(K, n) {
     tmp <- matrix(F, n, n)
-    tmp[1:K,1:K] <- T tmp
+    tmp[1:K,1:K] <- T
+    tmp
 }
 
 ## uper right part

@@ -115,7 +115,7 @@ function(Ro, R, kappa_s, kappa_t){
     w_t <- abs(Ro - R) <= kappa_t
     sum(w_s * w_t) / kappa_s / N
 }
-## per point:
+## per point quality:
 cm.Qtilde_i <-
 function(Ro, R, kappa_s, kappa_t){
     N <- nrow(R) + 1
