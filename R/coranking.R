@@ -1,4 +1,21 @@
-
+##' Co-Ranking Matrix
+##'
+##' Calculate the co-ranking matrix to assess the quality of a
+##' diminsionality reduction.
+##' 
+##' Calculate the coranking matrix, to assess the quality of a
+##' dimensionality reduction.  \code{Xi} is input in high dimensions,
+##' \code{X} is input in low dimensions the type of input is given in
+##' \code{input}, if \code{input = 'data'} it will be transformed into
+##' a distance matrix with the \code{dist} function, id \code{input ==
+##' 'rank'}, \code{Xi} and \code{X} are expected do be rank matrices.
+##' @param Xi high dimensional data
+##' @param X low dimensional data
+##' @param input type of input (see. details)
+##' @return a matrix of class \code{'coranking'}
+##' @author Guido Kraemer
+##' @seealso \code{\link{rankmatrix}}
+##' @export
 coranking <- function(Xi, X, input = 'data') {
     f <- function(x) order(order(x))
     if(input == 'data') {
@@ -37,9 +54,3 @@ coranking <- function(Xi, X, input = 'data') {
     class(res) <- "coranking"
     res
 }
-
-cm.R <- function(X){
-    dX <- as.matrix(dist(X))
-    apply(dX, 2, function(x) order(order(x)))
-}
-

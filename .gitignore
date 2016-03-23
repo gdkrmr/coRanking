@@ -2,5 +2,10 @@
 \#*#
 *~
 
-..Rcheck
+*.Rcheck
 *.tar.gz
+.Rhistory
+
+man/*
+
+NAMESPACE
