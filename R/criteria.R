@@ -52,15 +52,7 @@ cm.W_X_vw <- function(Q, K, w, v){
     sum(vals[inds]) / cm.C_K(K, N, w, v)
 }
 
-## local continuity meta-criterion
-cm.LCMC <- cm.U_LC <- function(Q, K){
-    N <- nrow(Q) + 1
-    K / (1-N) + sum(Q[cm.UL_K(K, nrow(Q))]) / N / K
-}
-## should be the same:
-## cm.LCMC <-
-## function(Q, K)
-##     cm.Q_NX(Q, K) - K / nrow(Q)
+
 
 
 ## fraction mild K-intrusions
@@ -72,6 +64,8 @@ cm.U_X <- function(Q, K)
 ## fraction same rank
 cm.U_P <- function(Q, K)
     sum(Q[cm.D_K( K, nrow(Q))]) / K / (nrow(Q)+1)
+
+cm.U_LC <- LCMC
 
 ## overall quality of embedding: Q_NX <- U_P + U_N + U_X
 cm.Q_NX <- function(Q, K)
