@@ -1,0 +1,124 @@
+---
+title: "Toy example interpreting the co-ranking Matrix"
+date: "`r Sys.Date()`"
+output: 
+  html_document
+---
+
+```{r setup}
+library(knitr)
+library(scatterplot3d)
+library(Rtsne)
+library(coRanking)
+npoints <- 1000
+
+theta <- runif(npoints, 0, 2 *pi)
+u <- runif(npoints, -1, 0.8)
+
+data <- list()
+data$x <- sqrt(1-u^2)*cos(theta)
+data$y <- sqrt(1-u^2)*sin(theta)
+data$z <- u
+data$col <- rgb(colorRamp(colors = c('red','yellow','green'))((data$z+1)/2),maxColorValue = 255)
+data <- as.data.frame(data, stringsAsFactors = F)
+```
+
+# Introduction
+ 
+The co-ranking matrix is a tool to assess the quality of a dimensionality reduciton.
+
+The fishbowl data set consists of a sphere with a hole on top:
+```{r}
+scatterplot3d(data$x, data$y, data$z,
+              color = data$col)
+ ```
+ 
+Dimensionality reductions:
+```{r, fig.show='hold', fig.width=4, fig.height=4}
+dim.red <- list()
+## dim.red$isomap <- isomap(dist(data[c('x','y','z')]), k = 20)
+## dim.red$kpca <- kpca(~x+y+z, data)
+dim.red$tsne <- Rtsne(data[c('x','y','z')])
+dim.red$pca <- princomp(data[c('x','y','z')])
+##plot(dim.red$isomap$points, col = data$col)
+## plot(rotated(dim.red$kpca), col = data$col)
+plot(dim.red$tsne$Y, col = data$col,
+     xlab = 'tsne I', ylab = 'tsne II',
+     main = 't-SNE')
+plot(dim.red$pca$scores, col = data$col,
+     xlab = 'PCA I', ylab = 'PCA II',
+     main = 'PCA')
+```
+
+the corresponding co-ranking matrices are:
+
+```{r, fig.show='hold', fig.width=4, fig.height=4}
+Q.tsne <- coranking(data[c('x','y','z')],dim.red$tsne$Y)
+Q.pca <- coranking(data[c('x','y','z')],dim.red$pca$scores[,1:2])
+image(log(t(apply(Q.tsne,2,rev))),
+      main = 't-SNE', axes = F)
+axis(2, at = c(0,1), labels = c(nrow(data)-1, 1))
+axis(3, at = c(0,1), labels = c(1, nrow(data)-1))
+
+image(log(t(apply(Q.pca,2,rev))),
+      main = 'PCA', axes = F)
+axis(2, at = c(0,1), labels = c(nrow(data)-1, 1))
+axis(3, at = c(0,1), labels = c(1, nrow(data)-1))
+```	
+
+As one can observe, the t-SNE *tears* the data, points that were
+close are far apart, e.g. the upper border of the fish bowl. This is
+reflected in the co-ranking matrix in higher values in the upper right
+part.
+The PCA *crushes* the points, the data set gets flattened and points
+that were far away are very close now, which manifests in more values
+in the lower left part of the co-ranking matrix.
+
+t-SNE also tends to keep the smaller distances between points,
+i.e. values close to the diagonal are higher in the upper left part, while
+PCA keeps the larger distances, i.e. the values close to the diagonal
+on the lower right are higher.
+	
+# A parameter free quality measure for dimensionality reduction
+Defined by **TODO:CITE**. A general quality measure depending on $K$
+could be defined as:
+
+$$\text{LCMC}(K) = \frac {1}{KN} \sum_{i,j\in {1, \ldots, K} - \frac{K}{N-1}}
+q_{i,j}$$
+
+```{r, fig.show='hold', fig.width=4, fig.height=4}
+lcmc.tsne <- numeric(nrow(Q.tsne))
+lcmc.pca <- numeric(nrow(Q.tsne))
+for(i in 1:nrow(Q.tsne)){
+    lcmc.tsne[i] <- coRanking:::cm.LCMC(Q.tsne, i)
+    lcmc.pca[i] <- coRanking:::cm.LCMC(Q.pca, i)
+}
+Kmax.tsne <- which.max(lcmc.tsne)
+Kmax.pca <- which.max(lcmc.pca)
+plot(lcmc.tsne, main = "t-SNE", xlab = "K", ylab = "LCMC")
+plot(lcmc.pca, main = "PCA", xlab = "K", ylab = "LCMC")
+```
+
+$Q_\text{local}$ is the mean over the values left of the maximum,
+$Q_\text{global}$ is the mean over the values right of the maximum.
+
+* *t-SNE*: 
+	+ $K_\text{max}    = `r Kmax.tsne`$
+	+ $Q_\text{local}  = `r mean(lcmc.tsne[1:Kmax.tsne])`$
+	+ $Q_\text{global} = `r mean(lcmc.tsne[(Kmax.tsne+1):nrow(Q.tsne)])`$
+* *PCA*: 
+	+ $K_\text{max}    = `r Kmax.pca`$
+	+ $Q_\text{local}  = `r mean(lcmc.pca[1:Kmax.pca])`$
+	+ $Q_\text{global} = `r mean(lcmc.pca[(Kmax.pca+1):nrow(Q.pca)])`$
+	
+$Q_\text{local}$ is considered to be more important than $Q_\text{global}$.
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
