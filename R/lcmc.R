@@ -12,9 +12,9 @@
 #' @return A number, the local continuity meta-criterion
 #' @author Guido Kraemer
 #' @export
-LCMC <- function(Q, K){
-    if(!is(Q, 'matrix')) stop("Q must be a matrix")
-    if(!isSymmetric(Q)) stop("Q must be symmetric")
+LCMC <- function(Q, K = 1:nrow(Q)){
+    if(!is.matrix(Q)) stop("Q must be a matrix")
+    if(dim(Q)[1] != dim(Q)[2]) stop("Q must be square")
     if(min(K) < 1) stop("min(K) must be >= 1")
     if(max(K) > nrow(Q)) stop("max(K) must be <= nrow(Q)")
 

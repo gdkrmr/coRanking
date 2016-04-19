@@ -15,7 +15,10 @@ Collate:
     'coranking_internals.R'
     'lcmc.R'
     'criteria.R'
-    'plot.R'
+    'image.R'
     'rankmatrix.R'
     'submatrix.R'
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

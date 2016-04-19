@@ -12,21 +12,33 @@
 #' @param ... parameters for the image function.
 #' @author Guido Kramer
 #' @export
-image.coranking <- function(Q, ...){
+image.coranking <- function(Q, lwd = 2, bty = 'n', main = 'co-ranking matrix',
+                            xlab = expression(R), ylab = expression(Ro),
+                            col = colorRampPalette(colors = c('gray85', 'red','yellow','green', 'blue'))(100),
+                            axes = F, ...){
+    require(methods)
     if(!hasArg(axes)){
-        was.missing.axes <- T
-        axes = F
+         was.missing.axes <- T
+         axes = F
     }
-    if(!hasArg(col)){
-        was.missing.col <- T
-        col <- colorRampPalette(colors = c('gray85', 'red','yellow','green', 'blue'))(100)
-        col <- (col)
-    }
+    ## if(!hasArg(col)){
+    ##     was.missing.col <- T
+    ##     col <- colorRampPalette(colors = c('gray85', 'red','yellow','green', 'blue'))(100)
+    ##     col <- (col)
+    ## }
     if(!hasArg(legend)) legend <- T
-    if(!hasArg(lwd))    lwd <- 2
-    if(!hasArg(bty))    bty <- 'n'
-    image.default(log(t(apply(Q,2,rev))), axes = axes, col = col, ...)
-    if(was.missing.axes){
+    ## if(!hasArg(lwd))    lwd <- 2
+    ## if(!hasArg(bty))    bty <- 'n'
+    ## if(!hasArg(main))   main <- 'co-ranking matrix'
+    ## if(!hasArg(xlab))   xlab <- expression(R)
+    ## if(!hasArg(ylab))   ylab <- expression(Rho)
+    image.default(log(t(apply(Q,2,rev))),
+                  axes = axes, #col = col,
+                  ## xlab = xlab, ylab = ylab,
+                  main = main,
+                  #axes = F,
+                  ...)
+    if(!axes){
         axis(2, at = c(0,1), labels = c(nrow(Q), 1))
         axis(3, at = c(0,1), labels = c(1, nrow(Q)))
     }

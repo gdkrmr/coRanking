@@ -1,8 +1,12 @@
 ---
 title: "Toy example interpreting the co-ranking Matrix"
+author: "Guido Kraemer"
 date: "`r Sys.Date()`"
-output: 
-  pdf_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup}
@@ -34,7 +38,7 @@ scatterplot3d(data$x, data$y, data$z,
  ```
  
 Dimensionality reductions:
-```{r, fig.show='hold', fig.width=4, fig.height=4}
+```{r, fig.show='hold'}
 dim.red <- list()
 ## dim.red$isomap <- isomap(dist(data[c('x','y','z')]), k = 20)
 ## dim.red$kpca <- kpca(~x+y+z, data)
@@ -52,18 +56,11 @@ plot(dim.red$pca$scores, col = data$col,
 
 the corresponding co-ranking matrices are:
 
-```{r, fig.show='hold', fig.width=4, fig.height=4}
+```{r, fig.show='hold'}
 Q.tsne <- coranking(data[c('x','y','z')],dim.red$tsne$Y)
 Q.pca <- coranking(data[c('x','y','z')],dim.red$pca$scores[,1:2])
-image(log(t(apply(Q.tsne,2,rev))),
-      main = 't-SNE', axes = F)
-axis(2, at = c(0,1), labels = c(nrow(data)-1, 1))
-axis(3, at = c(0,1), labels = c(1, nrow(data)-1))
-
-image(log(t(apply(Q.pca,2,rev))),
-      main = 'PCA', axes = F)
-axis(2, at = c(0,1), labels = c(nrow(data)-1, 1))
-axis(3, at = c(0,1), labels = c(1, nrow(data)-1))
+image(Q.tsne, main = 't-SNE')
+image(Q.pca, main = 'PCA')
 ```	
 
 As one can observe, the t-SNE *tears* the data, points that were
@@ -86,13 +83,11 @@ could be defined as:
 $$\text{LCMC}(K) = \frac {1}{KN} \sum_{i,j\in {1, \ldots, K} - \frac{K}{N-1}}
 q_{i,j}$$
 
-```{r, fig.show='hold', fig.width=4, fig.height=4}
+```{r, fig.show='hold'}
 lcmc.tsne <- numeric(nrow(Q.tsne))
 lcmc.pca <- numeric(nrow(Q.tsne))
-for(i in 1:nrow(Q.tsne)){
-    lcmc.tsne[i] <- coRanking:::cm.LCMC(Q.tsne, i)
-    lcmc.pca[i] <- coRanking:::cm.LCMC(Q.pca, i)
-}
+lcmc.tsne <- LCMC(Q.tsne)
+lcmc.pca <- LCMC(Q.pca)
 Kmax.tsne <- which.max(lcmc.tsne)
 Kmax.pca <- which.max(lcmc.pca)
 plot(lcmc.tsne, main = "t-SNE", xlab = "K", ylab = "LCMC")
@@ -112,13 +107,3 @@ $Q_\text{global}$ is the mean over the values right of the maximum.
 	+ $Q_\text{global} = `r mean(lcmc.pca[(Kmax.pca+1):nrow(Q.pca)])`$
 	
 $Q_\text{local}$ is considered to be more important than $Q_\text{global}$.
-
-
- 
- 
- 
- 
- 
- 
- 
- 
