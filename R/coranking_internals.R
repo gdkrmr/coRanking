@@ -1,6 +1,9 @@
 ##' @useDynLib coRanking
+
 ## there is really no need to export this one
 euclidean <- function(X, use = 'C'){
+    X <- as.matrix(X)
+    if(!is.double(X)) stop("X must be of type double")
     if(use == 'C') {
         euclidean_C(X)
     } else {
@@ -9,15 +12,21 @@ euclidean <- function(X, use = 'C'){
 }
 
 euclidean_R <- function(X) {
-    as.matrix(dist(X))
+    res <- as.matrix(dist(X))
+    dimnames(res) <- NULL
+    res
 }
 
 euclidean_C <- function(X) {
-    .Call('euclidean', X)
+    .Call('euclidean', as.matrix(X))
 }
 
 rankmatrix_R <- function(X){
-    res <- apply(X, 2, function(x) order(order(x)))
+    f <- function(x) rank(x, ties.method = 'first')
+    res <- apply(X, 1, f) 
+    res <- res - 1 # in c sorting starts with 0
+    dimnames(res) <- NULL
+    storage.mode(res) <- 'integer'
     class(res) <- 'rankmatrix'
     res
 }
@@ -28,7 +37,7 @@ rankmatrix_C <- function(X) {
     res
 }
 
-coranking_R <- function(Xi, X) {
+coranking_R <- function(Ro, R) {
     ## remove neighborhood of size 0 and correct dimnames
     res <- table(Ro, R)[-1, -1]
     dimnames(res) <- list(Ro = 1:nrow(res), R = 1:nrow(res))
@@ -36,8 +45,8 @@ coranking_R <- function(Xi, X) {
     res
 }
 
-coranking_C <- function(Xi, X) {
-    res <- .Call('coranking', Xi, X)
+coranking_C <- function(Ro, R) {
+    res <- .Call('coranking', Ro, R)
     dimnames(res) <- list(Ro = 1:nrow(res), R = 1:nrow(res))
     class(res) <- "coranking"
     res

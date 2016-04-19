@@ -31,6 +31,8 @@ extern "C" {
     int * cQ = INTEGER(rQ);
 
     CORANKING::coranking(cRo, cR, N, cQ);
+
+    
     
     UNPROTECT(1);
     return rQ;

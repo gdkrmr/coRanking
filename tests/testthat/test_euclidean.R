@@ -50,5 +50,7 @@ test_that('C and R backend equal', {
 df3 <- matrix(letters[1:8], ncol = 2)
 test_that('errors', {
     expect_error(coRanking:::euclidean(df3, use = 'C'),
-                 coRanking:::euclidean(df3, use = 'R'))
+                 'double')
+    expect_error(coRanking:::euclidean(df3, use = 'R'),
+                 'double')
 })

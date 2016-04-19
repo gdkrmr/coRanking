@@ -24,7 +24,7 @@ rankmatrix <- function(X, input = 'data', use = 'C'){
         return(rankmatrix(dX, input = 'dist', use))
     } else if(input == 'dist') {
         dX <- as.matrix(X)
-        if(dim(dX)[1] == dim(dX)[2])
+        if(dim(dX)[1] != dim(dX)[2])
             stop('distance matrices must be square')
         if( !isSymmetric(dX) )
             stop('distance matrices must be symmetric')

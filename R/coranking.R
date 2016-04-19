@@ -31,19 +31,19 @@ coranking <- function(Xi, X, input = 'data', use = 'C'){
         if( !isSymmetric(Xi) || !isSymmetric(X) )
             stop('input must be symmetric')
 
-        Ro <- rankmatrix(dXi, use)
-        R <- rankmatrix(dX, use)
+        Ro <- rankmatrix(Xi, input = 'dist', use)
+        R  <- rankmatrix(X,  input = 'dist', use)
         return(coranking(Ro, R, input = 'rank', use))
     } else if(input == 'rank') {
         if( !all.equal(dim(Xi)[1], dim(Xi)[2], dim(X)[1], dim(X)[2]) )
             stop('input must be the same size and square matrices')
-        
         if( !is.integer(Xi) || !is.integer(X))
             stop('input must be integer')
+
         if(use == 'C'){
-            return(coranking_R(Xi, X))
-        } else {
             return(coranking_C(Xi, X))
+        } else {
+            return(coranking_R(Xi, X))
         }
     }
     stop('input must be one of c("data", "dist", "rank")')
