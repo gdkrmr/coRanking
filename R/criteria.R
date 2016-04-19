@@ -1,4 +1,3 @@
-
 ## trustworthiness
 cm.G_K <- function(K, N)
     if(K < (N/2)) N*K*(2*N - 3*K - 1) else N*(N - K)*(N - K - 1)
@@ -102,16 +101,14 @@ cm.K_max <- function(Q){
 }
 
 ## 'improved' quality measures
-cm.Qtilde_NX <-
-function(Ro, R, kappa_s, kappa_t){
+cm.Qtilde_NX <- function(Ro, R, kappa_s, kappa_t){
     N <-  nrow(R) + 1
     w_s <- !((Ro > kappa_s) & (R > kappa_s))
     w_t <- abs(Ro - R) <= kappa_t
     sum(w_s * w_t) / kappa_s / N
 }
 ## per point quality:
-cm.Qtilde_i <-
-function(Ro, R, kappa_s, kappa_t){
+cm.Qtilde_i <- function(Ro, R, kappa_s, kappa_t){
     N <- nrow(R) + 1
     w_s <- !((Ro > kappa_s) & (R > kappa_s))
     w_t <- abs(Ro - R) <= kappa_t

@@ -1,22 +1,39 @@
 ##' Rank matrix
 ##'
-##' Calculates the rank matrix from X
+##' Replaces the elements of X with their rank in the column vector of
+##' the distance matrix
 ##'
-##' TODO: explain
-##' @param X data input
+##' Each column vector in the distance matrix (or the distance matrix
+##' computed from the input) is replaced by a vector indicating the
+##' rank of the distance inside that vector.
+##'
+##' This is a computation step necessary for the co-ranking matrix and
+##' provided mainly so that the user has the possibility to save
+##' computation time.
+##' 
+##' @param X data, dist object, or distance matrix
 ##' @param input type of input
+##' @param use if 'C' uses the compiled library, else uses the native
+##'     R code
 ##' @return returns a matrix of class \code{'rankmatrix'}
 ##' @author Guido Kraemer
 ##' @export
-rankmatrix <- function(X, input = 'data'){
+rankmatrix <- function(X, input = 'data', use = 'C'){
     if(input == 'data'){
-        dX <- as.matrix(dist(X))
+        dX <- euclidean(as.matrix(X), use)
+        return(rankmatrix(dX, input = 'dist', use))
     } else if(input == 'dist') {
         dX <- as.matrix(X)
-    } else {
-        stop("input must be of type 'data' or 'dist'")
+        if(dim(dX)[1] == dim(dX)[2])
+            stop('distance matrices must be square')
+        if( !isSymmetric(dX) )
+            stop('distance matrices must be symmetric')
+
+        if(use == 'C'){
+            return(rankmatrix_C(dX))
+        } else {
+            return(rankmatrix_R(dX))
+        }
     }
-    res <- apply(dX, 2, function(x) order(order(x)))
-    class(res) <- 'rankmatrix'
-    res
+    stop("input must be 'data' or 'dist'")
 }

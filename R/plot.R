@@ -21,9 +21,9 @@ image.coranking <- function(Q, legend = T,  ...){
         was.missing.col <- T
         col <- colorRampPalette(colors = c('red','yellow','green', 'blue'))(100)
     }
-    image(log(t(apply(Q,2,rev)), axes, col, ...))
+    image(log(t(apply(Q,2,rev))), axes, col = col, ...)
     if(was.missing.axes){
-        axis(2, at = c(0,1), labels = c(nrow(Q, 1)))
+        axis(2, at = c(0,1), labels = c(nrow(Q), 1))
         axis(3, at = c(0,1), labels = c(1, nrow(Q)))
     }
     if(legend){

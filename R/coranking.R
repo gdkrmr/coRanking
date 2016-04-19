@@ -12,45 +12,41 @@
 ##' @param Xi high dimensional data
 ##' @param X low dimensional data
 ##' @param input type of input (see. details)
+##' @param use \code{R} or \code{C} backend
 ##' @return a matrix of class \code{'coranking'}
 ##' @author Guido Kraemer
 ##' @seealso \code{\link{rankmatrix}}
 ##' @export
-coranking <- function(Xi, X, input = 'data') {
-    f <- function(x) order(order(x))
-    if(input == 'data') {
+coranking <- function(Xi, X, input = 'data', use = 'C'){
+    if(input == 'data'){
         if(dim(Xi)[1] != dim(X)[1])
             stop('number of input rows must be the same')
-        dXi <- as.matrix(dist(Xi))
-        dX <- as.matrix(dist(X))
-        ## because the matrix gets copied, row/columnwise does not
-        ## matter!!!
-        Ro <- apply(dXi, 2, f)
-        R <- apply(dX, 2, f)
-    } else if (input == 'dist') {
-        Xi <- as.matrix(Xi)
-        X <- as.matrix(X)
+        
+        dXi <- euclidean(Xi, use)
+        dX  <- euclidean(X, use)
+        return(coranking(dXi, dX, input = 'dist', use))
+    } else if(input == 'dist') {
         if( !all.equal(dim(Xi)[1], dim(Xi)[2], dim(X)[1], dim(X)[2]) )
             stop('input must be the same size and square matrices or of class "dist"')
         if( !isSymmetric(Xi) || !isSymmetric(X) )
             stop('input must be symmetric')
-        ## because the matrix gets copied, row/columnwise does not
-        ## matter!!!
-        Ro <- apply(Xi, 2, f)
-        R <- apply(X, 2, f)
-    } else if (input == 'rank') {
+
+        Ro <- rankmatrix(dXi, use)
+        R <- rankmatrix(dX, use)
+        return(coranking(Ro, R, input = 'rank', use))
+    } else if(input == 'rank') {
         if( !all.equal(dim(Xi)[1], dim(Xi)[2], dim(X)[1], dim(X)[2]) )
             stop('input must be the same size and square matrices')
-        Ro <- Xi
-        R <- X
-    } else {
-        stop('input must be one of c("data","dist","rank")')
+        
+        if( !is.integer(Xi) || !is.integer(X))
+            stop('input must be integer')
+        if(use == 'C'){
+            return(coranking_R(Xi, X))
+        } else {
+            return(coranking_C(Xi, X))
+        }
     }
-
-    ## remove neighborhood of size 0 and correct dimnames
-    res <- table(Ro, R)[-1, -1]
-    dimnames(res) <- list(Ro = 1:nrow(res), R = 1:nrow(res))
-
-    class(res) <- "coranking"
-    res
+    stop('input must be one of c("data", "dist", "rank")')
 }
+
+
