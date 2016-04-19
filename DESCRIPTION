@@ -18,3 +18,4 @@ Collate:
     'plot.R'
     'rankmatrix.R'
     'submatrix.R'
+Suggests: testthat
