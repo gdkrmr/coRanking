@@ -32,9 +32,7 @@ rankmatrix_R <- function(X){
 }
 
 rankmatrix_C <- function(X) {
-    res <- .Call('rankmatrix', X)
-    class(res) <- 'rankmatrix'
-    res
+    .Call('rankmatrix', X)
 }
 
 coranking_R <- function(Ro, R) {
@@ -46,8 +44,5 @@ coranking_R <- function(Ro, R) {
 }
 
 coranking_C <- function(Ro, R) {
-    res <- .Call('coranking', Ro, R)
-    dimnames(res) <- list(Ro = 1:nrow(res), R = 1:nrow(res))
-    class(res) <- "coranking"
-    res
+    .Call('coranking', Ro, R)
 }

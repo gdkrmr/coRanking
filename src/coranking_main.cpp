@@ -22,19 +22,39 @@ extern "C" {
     if(INTEGER( getAttrib(Ro, R_DimSymbol))[0] !=
        INTEGER( getAttrib(R,  R_DimSymbol))[0])
       error("input matrices must have the same size");
-    
+
     int * cRo = INTEGER(Ro);
     int * cR  = INTEGER(R);
     int N = INTEGER( getAttrib(Ro, R_DimSymbol) )[0];
     
     SEXP rQ = PROTECT(allocMatrix(INTSXP, N-1, N-1));
     int * cQ = INTEGER(rQ);
-
+ 
     CORANKING::coranking(cRo, cR, N, cQ);
 
-    
-    
-    UNPROTECT(1);
+    // set dimensions nicely
+
+    //the "" seems to be important, without it
+    // we get a segfault
+    const char *rQcornms[] = {"Ro", "R", ""};
+    SEXP rQdimnames = PROTECT(mkNamed(VECSXP, rQcornms));
+
+    // 1:N-1
+    SEXP corIdx1 = PROTECT(allocVector(INTSXP, N-1));
+    int * ci = INTEGER(corIdx1);
+    for(int i = 0; i < N-1; i++) ci[i] = i+1;
+    SEXP corIdx2 = PROTECT(duplicate(corIdx1));
+
+    SET_VECTOR_ELT(rQdimnames, 0, Ro = corIdx1);
+    SET_VECTOR_ELT(rQdimnames, 1, R  = corIdx2);
+    setAttrib(rQ, R_DimNamesSymbol, rQdimnames);
+
+    // set class
+    SEXP rQclass = PROTECT(allocVector(STRSXP, 1));
+    SET_STRING_ELT(rQclass, 0, mkChar("coranking"));
+    setAttrib(rQ, R_ClassSymbol, rQclass); 
+
+    UNPROTECT(5);
     return rQ;
   }
 
@@ -56,8 +76,12 @@ extern "C" {
     int * cR = INTEGER(rR);
 
     CORANKING::rankmatrix(cDD, N, cR);
-
-    UNPROTECT(1);
+    
+    SEXP Rclass = PROTECT(allocVector(STRSXP, 1));
+    SET_STRING_ELT(Rclass, 0, mkChar("rankmatrix"));
+    setAttrib(rR, R_ClassSymbol, Rclass);
+    
+    UNPROTECT(2);
     return rR;
   }
 
@@ -82,4 +106,4 @@ extern "C" {
     return rDD;    
   }
   
-}
+} // end extern "C"
