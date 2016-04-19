@@ -7,14 +7,16 @@
 
 void CORANKING::coranking(const int* Ro, const int* R,
 			  const int N, int* Q) {
-  for(int i = 0; i < N*N; i++) Q[i] = 0;
+  for(int i = 0; i < (N-1)*(N-1); i++) Q[i] = 0;
   
   int ind;
+  int Qind;
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < N; j++) {
       ind = i*N + j;
       if(R[ind] > 0 && Ro[ind] > 0) {
-	Q[ (R[ind]-1) * (N-1) + Ro[ind]-1 ] += 1;
+	Qind = (R[ind] - 1) * (N-1) + Ro[ind] - 1;
+	Q[ Qind ] += 1;
       }
     }
   }

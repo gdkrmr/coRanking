@@ -81,3 +81,12 @@ test_that('errors', {
     expect_error(coranking(df1, df3, use = 'C'),
                  'double')
 })
+
+
+m3 <- matrix(runif(1000), ncol = 10)
+m4 <- matrix(runif(1000), ncol = 10)
+
+test_that('larger data', {
+    expect_equal(coranking(m3, m4, use = 'C'),
+                 coranking(m3, m4, use = 'R'))
+})
