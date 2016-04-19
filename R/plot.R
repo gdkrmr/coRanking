@@ -12,22 +12,34 @@
 #' @param ... parameters for the image function.
 #' @author Guido Kramer
 #' @export
-image.coranking <- function(Q, legend = T,  ...){
-    if(missing(axes)){
+image.coranking <- function(Q, ...){
+    if(!hasArg(axes)){
         was.missing.axes <- T
         axes = F
     }
-    if(missing(col)){
+    if(!hasArg(col)){
         was.missing.col <- T
-        col <- colorRampPalette(colors = c('red','yellow','green', 'blue'))(100)
+        col <- colorRampPalette(colors = c('gray85', 'red','yellow','green', 'blue'))(100)
+        col <- (col)
     }
-    image(log(t(apply(Q,2,rev))), axes, col = col, ...)
+    if(!hasArg(legend)) legend <- T
+    if(!hasArg(lwd))    lwd <- 2
+    if(!hasArg(bty))    bty <- 'n'
+    image.default(log(t(apply(Q,2,rev))), axes = axes, col = col, ...)
     if(was.missing.axes){
         axis(2, at = c(0,1), labels = c(nrow(Q), 1))
         axis(3, at = c(0,1), labels = c(1, nrow(Q)))
     }
     if(legend){
-        legend(grconvertX(0.5, 'device'), grconvertY(1,'device'),
-               c('0', '0.5', '1'), fill = col)
+        lgd <- rep('', 100)
+        lgd[100] <- 'log(0)'
+        lgd[1] <- paste0('log(', max(Q), ')')
+        legend('topright', #1,1,#grconvertX(0, 'device'), grconvertY(1,'device'),
+               legend = lgd, #rep('', 100), #c('0', '0.5', '1'),
+               lwd = lwd,
+               y.intersp = lwd/20,
+               col = rev(col),
+               bty = bty,
+               ...)
     }
 }
