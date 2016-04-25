@@ -3,7 +3,7 @@
 #include <Rinternals.h>
 
 extern "C" {
- 
+
   SEXP coranking(SEXP Ro, SEXP R){
 
     if(!isInteger(Ro) || !isInteger(R))
