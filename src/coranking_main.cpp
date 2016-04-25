@@ -1,11 +1,8 @@
 #include "coranking.h"
 #include <R.h>
 #include <Rinternals.h>
-//#include "/usr/share/R/include/R.h"
-//#include "/usr/share/R/include/Rinternals.h"
 
 extern "C" {
-
  
   SEXP coranking(SEXP Ro, SEXP R){
 

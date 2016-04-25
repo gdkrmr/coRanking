@@ -9,3 +9,4 @@ a.out
 *.Rcheck
 *.tar.gz
 .Rhistory
+.dir-locals.el
