@@ -4,8 +4,9 @@ src/test.R
 a.out
 *.html
 *.md
-\#*#
+.\#*
 *~
 *.Rcheck
 *.tar.gz
 .Rhistory
+.RData

@@ -4,7 +4,7 @@
 \alias{LCMC}
 \title{The local continuity meta-criterion}
 \usage{
-LCMC(Q, K)
+LCMC(Q, K = 1:nrow(Q))
 }
 \arguments{
 \item{Q}{a co-ranking matrix}

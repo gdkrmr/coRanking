@@ -4,7 +4,10 @@
 \alias{image.coranking}
 \title{Image function for the co-ranking matrix}
 \usage{
-\method{image}{coranking}(Q, ...)
+\method{image}{coranking}(Q, lwd = 2, bty = "n",
+  main = "co-ranking matrix", xlab = expression(R), ylab = expression(Ro),
+  col = colorRampPalette(colors = c("gray85", "red", "yellow", "green",
+  "blue"))(100), axes = F, ...)
 }
 \arguments{
 \item{Q}{of class \code{coranking}.}

@@ -49,4 +49,27 @@ test_that('errors', {
                  "double")
     expect_error(rankmatrix(df3, use = 'R'),
                  "double")
+    
 })
+
+
+d1 <- as.matrix(dist(df1))
+d1[1,1] <- 0.5
+test_that('non-zeros in diagonal', {
+    expect_error(rankmatrix(d1, input = 'dist', use = 'C'))
+    expect_error(rankmatrix(d1, input = 'dist', use = 'R'))
+})
+
+### the original algorithm for the rankmatrix has a bug if there are zeros off the diagonal
+d2 <- as.matrix(dist(df2))
+d2[1,2] <- 0
+d2[2,1] <- 0
+test_that('offdiagonal zeros', {
+    expect_warning(rankmatrix(d2, input = 'dist'))
+    expect_warning(expect_equal(
+        rankmatrix(d2, input = 'dist', use = 'C'),
+        rankmatrix(d2, input = 'dist', use = 'R')
+    ))
+})
+
+

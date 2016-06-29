@@ -22,7 +22,8 @@ euclidean_C <- function(X) {
 }
 
 rankmatrix_R <- function(X){
-    f <- function(x) rank(x, ties.method = 'first')
+    f <- function(x) rank(x, ties.method = 'first', na.last = FALSE)
+    diag(X) <- NA
     res <- apply(X, 1, f) 
     res <- res - 1 # in c sorting starts with 0
     dimnames(res) <- NULL

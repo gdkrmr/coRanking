@@ -41,6 +41,25 @@ void CORANKING::rankmatrix(const double* DD,
 	      [ptr] (const int l, const int r) {
 		return ptr[l] < ptr[r];
 	      });
+    
+    // we are in row i so inds[0] must be i
+    //std::cout << "inds[0] = " << inds[0] << "; i = " << i << std::endl;
+    if(inds[0] != i) {
+      // inds == {5, 6, i, ...}
+      int iind = 0;
+      while ( inds[iind] != i ) {
+	//std::cout << "iind = " << iind << "; N = " << N << std::endl;
+	iind++;
+	if(iind >= N) exit(1); // can we guarantee that this will never happen?
+      }
+
+      for(int j = iind; j > 0; j--) {
+	//std::cout << "j = " << j << std::endl;
+	inds[j] = inds[j-1];
+      }
+
+      inds[0] = i;	
+    }
 
     for(int j = 0; j < N; j++) {
       ranks[inds[j]] = j;

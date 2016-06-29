@@ -24,10 +24,16 @@ rankmatrix <- function(X, input = 'data', use = 'C'){
         return(rankmatrix(dX, input = 'dist', use))
     } else if(input == 'dist') {
         dX <- as.matrix(X)
-        if(dim(dX)[1] != dim(dX)[2])
+        nr <- dim(dX)[1]
+        nc <- dim(dX)[2]
+        if(nr != nc)
             stop('distance matrices must be square')
         if( !isSymmetric(dX) )
             stop('distance matrices must be symmetric')
+        if( !all(diag(dX) == 0) ) 
+            stop('diagonal of distance matrix must be 0')
+        if( any(dX[-seq(1, nr^2, nr+1)] == 0) )
+            warning('0 outside of diagonal in distance matrix')
 
         if(use == 'C'){
             return(rankmatrix_C(dX))
