@@ -9,8 +9,5 @@ a.out
 *.Rcheck
 *.tar.gz
 .Rhistory
-<<<<<<< HEAD
 .RData
-=======
 .dir-locals.el
->>>>>>> 5a7aff876ab008f8c4812c2ad29078e613e0d783
