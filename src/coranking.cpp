@@ -133,7 +133,7 @@ void CORANKING::euclidean(const double* X, const int N,
   }
   
   for(int i = 0; i < N*N; i++) {
-    DD[i] = std::sqrt(DD[i]);
+    DD[i] = ( DD[i] < 0 ? 0 : std::sqrt(DD[i]) );
   }
 
   free(sqnorms);
