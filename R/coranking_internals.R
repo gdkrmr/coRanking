@@ -12,7 +12,7 @@ euclidean <- function(X, use = 'C'){
 }
 
 euclidean_R <- function(X) {
-    res <- as.matrix(dist(X))
+    res <- as.matrix(stats::dist(X))
     dimnames(res) <- NULL
     res
 }

@@ -59,8 +59,8 @@ the corresponding co-ranking matrices are:
 ```{r, fig.show='hold'}
 Q.tsne <- coranking(data[c('x','y','z')],dim.red$tsne$Y)
 Q.pca <- coranking(data[c('x','y','z')],dim.red$pca$scores[,1:2])
-image(Q.tsne, main = 't-SNE')
-image(Q.pca, main = 'PCA')
+imageplot(Q.tsne, main = 't-SNE')
+imageplot(Q.pca, main = 'PCA')
 ```	
 
 As one can observe, the t-SNE *tears* the data, points that were

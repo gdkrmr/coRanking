@@ -3,8 +3,8 @@
 #' Calculate the local continuity meta-criterion from a co-ranking matrix.
 #'
 #' The local continuity meta-criterion **todo:cite** is defined as
-#' \deqn{ \text{LCMC} = \frac{K}{1-N} +
-#'        \frac {1}{NK}\sum_{(k,l)\in\mathbb U \mathbb L_K q_{kl}} }
+#' \deqn{ \textrm{LCMC} = \frac{K}{1-N} +
+#'        \frac {1}{NK}\sum_{(k,l)\in U  L_K q_{kl}} }
 #' Higher values mean a better performance of the dimensionality reduction.
 #'
 #' @param Q a co-ranking matrix
@@ -18,9 +18,9 @@ LCMC <- function(Q, K = 1:nrow(Q)){
     if(min(K) < 1) stop("min(K) must be >= 1")
     if(max(K) > nrow(Q)) stop("max(K) must be <= nrow(Q)")
 
-    if(!is(Q, 'coranking')) warn("Q shoulde be of class coranking")
-    if(typeof(Q) != 'integer') warn("Q should be integer")
-    if(typeof(K) != 'integer') warn("K should be integer")
+    if(!methods::is(Q, 'coranking')) warning("Q shoulde be of class coranking")
+    if(typeof(Q) != 'integer') warning("Q should be integer")
+    if(typeof(K) != 'integer') warning("K should be integer")
 
     nQ <- nrow(Q)
     nK <- length(K)

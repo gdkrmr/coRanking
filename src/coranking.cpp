@@ -3,6 +3,8 @@
 #include <cstdio>
 #include <iostream>
 #include "coranking.h"
+#include <R.h>
+#include <Rinternals.h>
 
 
 void CORANKING::coranking(const int* Ro, const int* R,
@@ -50,7 +52,7 @@ void CORANKING::rankmatrix(const double* DD,
       while ( inds[iind] != i ) {
 	//std::cout << "iind = " << iind << "; N = " << N << std::endl;
 	iind++;
-	if(iind >= N) exit(1); // can we guarantee that this will never happen?
+	if(iind >= N) error("Error in C code: index out of range"); // can we guarantee that this will never happen?
       }
 
       for(int j = iind; j > 0; j--) {

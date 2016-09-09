@@ -6,7 +6,7 @@ cm.M_T <- function(Q, K){
     N <- nrow(Q) + 1
     vals <- (row(Q) - K) * Q
     inds <- cm.LL_K(K, nrow(Q))
-    1 - 2 / mm.G_K(K, N) * sum(vals[inds])
+    1 - 2 / cm.G_K(K, N) * sum(vals[inds])
 }
 
 ## continuity
@@ -14,7 +14,7 @@ cm.M_C <- function(Q, K) {
     N <- nrow(Q) + 1
     vals <- (col(Q) - K) * Q
     inds <- cm.UR_K(K, nrow(Q))
-    1 - 2 / mm.G_K(K, N) * sum(vals[inds])
+    1 - 2 / cm.G_K(K, N) * sum(vals[inds])
 }
 
 ## mean relative rank errors
@@ -25,7 +25,7 @@ cm.W_n <- function(Q, K){
     N <- nrow(Q) + 1
     vals <- abs(row(Q) - col(Q)) / col(Q) * Q
     inds <- cm.UL_K(K, nrow(Q)) | cm.LL_K(K, nrow(Q))
-    sum(val[inds]) / cm.H_K(K, N)
+    sum(vals[inds]) / cm.H_K(K, N)
 }
 cm.W_nu <- function(Q, K){
     N <- nrow(Q) + 1
@@ -64,27 +64,27 @@ cm.U_X <- function(Q, K)
 cm.U_P <- function(Q, K)
     sum(Q[cm.D_K( K, nrow(Q))]) / K / (nrow(Q)+1)
 
-cm.U_LC <- LCMC
+cm.LCMC <- cm.U_LC <- LCMC
 
 ## overall quality of embedding: Q_NX <- U_P + U_N + U_X
 cm.Q_NX <- function(Q, K)
     sum(Q[cm.UL_K(K, nrow(Q))]) / K / (nrow(Q)+1)
 cm.Q_TC <- function(Q, K)
-    M_T(Q, K) + M_C(Q, K)
+    cm.M_T(Q, K) + cm.M_C(Q, K)
 cm.Q_nnu <- function(Q, K)
-    2 - W_n(Q, K) - W_nu(Q, K)
+    2 - cm.W_n(Q, K) - cm.W_nu(Q, K)
 cm.Q_wNX_vw<- function(Q, K, v, w)
-    2 - W_N_vw(Q, K, v, w) - W_X_vw(Q, K, v, w)
+    2 - cm.W_N_vw(Q, K, v, w) - cm.W_X_vw(Q, K, v, w)
 
 ## behavior, intrusive: B_NX > 0, extrusive B_NX < 0
 cm.B_NX <- function(Q, K)
     cm.U_N(Q, K) - cm.U_X(Q, K)
 cm.B_TC <- function(Q, K)
-    M_T(Q, K) - M_C(Q, K)
+    cm.M_T(Q, K) - cm.M_C(Q, K)
 cm.B_nnu <- function(Q, K)
-    W_n(Q, K) - W_nu(Q, K)
+    cm.W_n(Q, K) - cm.W_nu(Q, K)
 cm.B_wNX_vw<- function(Q, K, v, w)
-    W_N_vw(Q, K, v, w) - W_X_vw(Q, K, v, w)
+    cm.W_N_vw(Q, K, v, w) - cm.W_X_vw(Q, K, v, w)
 
 ## local and global quality
 cm.K_max <- function(Q){
