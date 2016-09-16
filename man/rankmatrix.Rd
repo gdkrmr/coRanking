@@ -4,7 +4,7 @@
 \alias{rankmatrix}
 \title{Rank matrix}
 \usage{
-rankmatrix(X, input = "data", use = "C")
+rankmatrix(X, input = c("data", "dist"), use = "C")
 }
 \arguments{
 \item{X}{data, dist object, or distance matrix}
@@ -18,7 +18,7 @@ R code}
 returns a matrix of class \code{'rankmatrix'}
 }
 \description{
-Replaces the elements of X with their rank in the column vector of
+Replaces the elements of \eqn{X} with their rank in the column vector of
 the distance matrix
 }
 \details{

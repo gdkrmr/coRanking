@@ -9,6 +9,7 @@
 ##' \code{input}, if \code{input = 'data'} it will be transformed into
 ##' a distance matrix with the \code{dist} function, id \code{input ==
 ##' 'rank'}, \code{Xi} and \code{X} are expected do be rank matrices.
+##' 
 ##' @param Xi high dimensional data
 ##' @param X low dimensional data
 ##' @param input type of input (see. details)
@@ -17,7 +18,8 @@
 ##' @author Guido Kraemer
 ##' @seealso \code{\link{rankmatrix}}
 ##' @export
-coranking <- function(Xi, X, input = 'data', use = 'C'){
+coranking <- function(Xi, X, input = c('data', 'dist', 'rank'), use = 'C'){
+    input = match.arg(input)
     if(input == 'data'){
         if(dim(Xi)[1] != dim(X)[1])
             stop('number of input rows must be the same')

@@ -18,9 +18,9 @@ A number, the local continuity meta-criterion
 Calculate the local continuity meta-criterion from a co-ranking matrix.
 }
 \details{
-The local continuity meta-criterion **todo:cite** is defined as
-\deqn{ \textrm{LCMC} = \frac{K}{1-N} +
-       \frac {1}{NK}\sum_{(k,l)\in U  L_K q_{kl}} }
+The local continuity meta-criterion (Chen and Buja, 2006) is defined as
+\deqn{ LCMC = \frac{K}{1-N} +
+              \frac{1}{NK} \sum_{(k,l)\in U  L_K} q_{kl} }
 Higher values mean a better performance of the dimensionality reduction.
 }
 \author{

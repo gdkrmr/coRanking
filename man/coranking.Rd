@@ -4,7 +4,7 @@
 \alias{coranking}
 \title{Co-Ranking Matrix}
 \usage{
-coranking(Xi, X, input = "data", use = "C")
+coranking(Xi, X, input = c("data", "dist", "rank"), use = "C")
 }
 \arguments{
 \item{Xi}{high dimensional data}

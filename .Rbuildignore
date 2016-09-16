@@ -1,3 +1,5 @@
 ^\..*$
 ^coRanking_.*\.tar\.gz$
 ^TODO$
+^R/TAGS$
+^checkpackage.sh$

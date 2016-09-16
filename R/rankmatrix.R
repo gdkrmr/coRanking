@@ -1,6 +1,6 @@
 ##' Rank matrix
 ##'
-##' Replaces the elements of X with their rank in the column vector of
+##' Replaces the elements of \eqn{X} with their rank in the column vector of
 ##' the distance matrix
 ##'
 ##' Each column vector in the distance matrix (or the distance matrix
@@ -18,7 +18,8 @@
 ##' @return returns a matrix of class \code{'rankmatrix'}
 ##' @author Guido Kraemer
 ##' @export
-rankmatrix <- function(X, input = 'data', use = 'C'){
+rankmatrix <- function(X, input = c('data', 'dist'), use = 'C'){
+    input <- match.arg(input)
     if(input == 'data'){
         dX <- euclidean(as.matrix(X), use)
         return(rankmatrix(dX, input = 'dist', use))
