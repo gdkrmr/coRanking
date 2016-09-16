@@ -4,7 +4,7 @@ Version: 0.1.3
 Date: 2016-09-16
 Author: Guido Kraemer
 Maintainer: Guido Kraemer <gkraemer@bgc-jena.mpg.de>
-Description: This is a package to calculate the co-ranking matrix to assess the
+Description: Calculates the co-ranking matrix to assess the
     quality of a dimensionality reduction.
 License: GPL-3
 Imports:
