@@ -10,9 +10,7 @@ License: GPL-3
 Imports:
     methods,
     graphics,
-    stats,
-    Rtsne,
-    scatterplot3d
+    stats
 RoxygenNote: 5.0.1
 Collate:
     'coranking-package.R'
@@ -23,7 +21,10 @@ Collate:
     'image.R'
     'rankmatrix.R'
     'submatrix.R'
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    Rtsne,
+    scatterplot3d
 VignetteBuilder: knitr
