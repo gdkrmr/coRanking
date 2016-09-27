@@ -10,3 +10,4 @@ a.out
 .RData
 .dir-locals.el
 /R/TAGS
+inst/doc
