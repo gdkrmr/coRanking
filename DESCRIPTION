@@ -6,7 +6,7 @@ Author: Guido Kraemer
 Maintainer: Guido Kraemer <gkraemer@bgc-jena.mpg.de>
 Description: Calculates the co-ranking matrix to assess the
     quality of a dimensionality reduction.
-License: GPL-3
+License: GPL-3 | file LICENSE
 Imports:
     methods,
     graphics,
