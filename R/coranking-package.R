@@ -8,8 +8,9 @@
 #' matrix, plotitng functions and some derived measures for quality
 #' assessment of dimensionality reductions.
 #' 
-#' Funding provided by the Max Planck Institute for Biogeochemistry,
-#' Jena, Empirical Inference of the Earth System Group.
+#' Funding provided by the Department for Biogeochemical Integration,
+#' Empirical Inference of the Earth System Group, at the Max Plack
+#' Institute for Biogeochemistry, Jena.
 #' 
 #' @references
 #' Lee, J.A., Lee, J.A., Verleysen, M., 2009. Quality assessment of
