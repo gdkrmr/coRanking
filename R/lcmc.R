@@ -18,7 +18,7 @@ LCMC <- function(Q, K = 1:nrow(Q)){
     if(min(K) < 1) stop("min(K) must be >= 1")
     if(max(K) > nrow(Q)) stop("max(K) must be <= nrow(Q)")
 
-    if(!methods::is(Q, 'coranking')) warning("Q shoulde be of class coranking")
+    if(!methods::is(Q, 'coranking')) warning("Q should be of class coranking")
     if(typeof(Q) != 'integer') warning("Q should be integer")
     if(typeof(K) != 'integer') warning("K should be integer")
 
