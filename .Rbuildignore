@@ -3,3 +3,4 @@
 ^TODO$
 ^R/TAGS$
 ^checkpackage.sh$
+^\.travis\.yml$
