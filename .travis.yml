@@ -1,0 +1,18 @@
+language: r
+cache: packages
+sudo: false
+
+r:
+  - oldrel
+  - release
+  - devel
+
+before_install:
+  - Rscript -e "update.packages(ask = FALSE)"
+  - Rscript -e "install.packages('covr')"
+
+after_success:
+  - Rscript -e "covr::codecov()"
+
+before_deploy:
+  - Rscript -e "devtools::document()"
