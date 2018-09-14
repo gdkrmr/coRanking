@@ -27,4 +27,11 @@ Chen, L., Buja, A., 2006. Local Multidimensional
     Scaling for Nonlinear Dimension Reduction, Graph Layout and
     Proximity Analysis.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/gdkrmr/coRanking}
+  \item Report bugs at \url{https://github.com/gdkrmr/coRanking/issues}
+}
 
+}

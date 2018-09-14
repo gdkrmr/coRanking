@@ -26,4 +26,3 @@ Higher values mean a better performance of the dimensionality reduction.
 \author{
 Guido Kraemer
 }
-

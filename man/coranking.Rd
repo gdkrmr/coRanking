@@ -30,10 +30,9 @@ dimensionality reduction.  \code{Xi} is input in high dimensions,
 a distance matrix with the \code{dist} function, id \code{input ==
 'rank'}, \code{Xi} and \code{X} are expected do be rank matrices.
 }
-\author{
-Guido Kraemer
-}
 \seealso{
 \code{\link{rankmatrix}}
 }
-
+\author{
+Guido Kraemer
+}

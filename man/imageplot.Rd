@@ -42,4 +42,3 @@ better contrast.
 \author{
 Guido Kramer
 }
-

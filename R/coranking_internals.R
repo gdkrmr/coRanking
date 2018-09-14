@@ -1,5 +1,3 @@
-##' @useDynLib coRanking
-
 ## there is really no need to export this one
 euclidean <- function(X, use = "C"){
     X <- as.matrix(X)
@@ -17,8 +15,9 @@ euclidean_R <- function(X) {
     res
 }
 
+##' @useDynLib coRanking C_euclidean
 euclidean_C <- function(X) {
-    .Call("euclidean", as.matrix(X))
+    .Call("C_euclidean", as.matrix(X))
 }
 
 rankmatrix_R <- function(X){
@@ -32,8 +31,9 @@ rankmatrix_R <- function(X){
     res
 }
 
+##' @useDynLib coRanking C_rankmatrix
 rankmatrix_C <- function(X) {
-    .Call("rankmatrix", X)
+    .Call("C_rankmatrix", X)
 }
 
 coranking_R <- function(Ro, R) {
@@ -44,6 +44,7 @@ coranking_R <- function(Ro, R) {
     res
 }
 
+##' @useDynLib coRanking C_coranking
 coranking_C <- function(Ro, R) {
-    .Call("coranking", Ro, R)
+    .Call("C_coranking", Ro, R)
 }
