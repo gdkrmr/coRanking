@@ -9,18 +9,18 @@ assess the quality of dimensionality reductions
 
 ## Installing
 
-- Install the development version:
+Install the development version:
 ```R
-## install.pacages("devtools")
+## install.packages("devtools")
 devtools::install_github("gdkrmr/coRanking")
 ```
 
-- Install from CRAN:
+Install from CRAN:
 ```R
 install.packages("coRanking")
 ```
 
-- Use it:
+Use it:
 ```R
 library(coRanking)
 ```
