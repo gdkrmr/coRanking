@@ -7,25 +7,25 @@ The Co-Ranking Matrix
 An implementation of the Co-Ranking matrix and derived methods to
 assess the quality of dimensionality reductions
 
-## Installing:
+## Installing
 
-Install the development version:
+- Install the development version:
 ```R
 ## install.pacages("devtools")
 devtools::install_github("gdkrmr/coRanking")
 ```
 
-Install from CRAN:
+- Install from CRAN:
 ```R
 install.packages("coRanking")
 ```
 
-Load it:
+- Use it:
 ```R
 library(coRanking)
 ```
 
-## Citing:
+## Citing
 The corresponding publication can be found
 [here](https://journal.r-project.org/archive/2018/RJ-2018-039/index.html "dimRed
 and coRanking - Unifying Dimensionality Reduction in R"), please cite if you use
