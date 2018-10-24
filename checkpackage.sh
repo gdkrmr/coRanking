@@ -1,24 +1,28 @@
 #!/bin/bash
 
 
+# R_FOLDER=/usr/bin
+# R_FOLDER=$HOME/progs/R/R-3.5.1/bin
+R_FOLDER=$HOME/progs/R/R-devel/bin
+
 echo "BUILDING DOCUMENTATION"
-Rscript -e 'devtools::document()'
+$R_FOLDER/Rscript -e 'devtools::document()'
 
 echo "BUILDING VIGNETTES"
-Rscript -e 'devtools::build_vignettes()'
+$R_FOLDER/Rscript -e 'devtools::build_vignettes()'
 
 echo "REMOVING emacs lockfiles"
 find . -type l -exec rm {} \;
 
 echo "BUILDING"
-R CMD build .
+$R_FOLDER/R CMD build .
 
 # echo "LINTING"
-# Rscript -e 'lintr::lint_package()'
+# $R_FOLDER/Rscript -e 'lintr::lint_package()'
 
 pkgversion=$(cat DESCRIPTION | grep Version | sed 's|Version: \(.*\)|\1|')
 echo "INSTALLING version $pkgversion"
-R CMD INSTALL coRanking_$pkgversion.tar.gz
+$R_FOLDER/R CMD INSTALL coRanking_$pkgversion.tar.gz
 
 echo "CHECKING!!!"
-R CMD check coRanking_$pkgversion.tar.gz --as-cran
+$R_FOLDER/R CMD check coRanking_$pkgversion.tar.gz --as-cran

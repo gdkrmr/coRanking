@@ -8,6 +8,7 @@ Description: Calculates the co-ranking matrix to assess the
 URL: https://github.com/gdkrmr/coRanking
 BugReports: https://github.com/gdkrmr/coRanking/issues
 License: GPL-3 | file LICENSE
+Encoding: UTF-8
 Imports:
     methods,
     graphics,

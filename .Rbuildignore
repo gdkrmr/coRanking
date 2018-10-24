@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^\..*$
 ^coRanking_.*\.tar\.gz$
 ^TODO$

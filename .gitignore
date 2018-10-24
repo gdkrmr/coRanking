@@ -1,3 +1,5 @@
+Meta
+doc
 *.o
 *.so
 src/test.R
@@ -12,4 +14,3 @@ a.out
 /R/TAGS
 
 inst/doc
-
