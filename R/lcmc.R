@@ -31,9 +31,9 @@ LCMC <- function(Q, K = 1:nrow(Q)){
     ## "right" method.
     ## Maybe putting Q[1:k, 1:k] in the for loop is
     ## faster than the logical indexing
-    if (nK < 0.2 * nQ){
+    if (nK < 0.2 * nQ) {
         lcmc <- numeric(nK)
-        for (i in 1:nK){
+        for (i in 1:nK) {
             k <- K[i]
             lcmc[i] <- k / (1 - N) + sum(Q[cm.UL_K(k, nQ)]) / N / k
         }

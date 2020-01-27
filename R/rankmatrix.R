@@ -10,7 +10,7 @@
 #' This is a computation step necessary for the co-ranking matrix and
 #' provided mainly so that the user has the possibility to save
 #' computation time.
-#' 
+#'
 #' @param X data, dist object, or distance matrix
 #' @param input type of input
 #' @param use if 'C' uses the compiled library, else uses the native
@@ -18,9 +18,9 @@
 #' @return returns a matrix of class \code{'rankmatrix'}
 #' @author Guido Kraemer
 #' @export
-rankmatrix <- function(X, input = c("data", "dist"), use = "C"){
+rankmatrix <- function(X, input = c("data", "dist"), use = "C") {
     input <- match.arg(input)
-    if (input == "data"){
+    if (input == "data") {
         dX <- euclidean(as.matrix(X), use)
         return(rankmatrix(dX, input = "dist", use))
     } else if (input == "dist") {
@@ -29,14 +29,14 @@ rankmatrix <- function(X, input = c("data", "dist"), use = "C"){
         nc <- dim(dX)[2]
         if (nr != nc)
             stop("distance matrices must be square")
-        if ( !isSymmetric(dX) )
+        if (!isSymmetric(dX))
             stop("distance matrices must be symmetric")
-        if ( !all(diag(dX) == 0) )
+        if (!all(diag(dX) == 0))
             stop("diagonal of distance matrix must be 0")
-        if ( any(dX[-seq(1, nr ^ 2, nr + 1)] == 0) )
+        if (any(dX[-seq(1, nr ^ 2, nr + 1)] == 0))
             warning("0 outside of diagonal in distance matrix")
 
-        if (use == "C"){
+        if (use == "C") {
             return(rankmatrix_C(dX))
         } else {
             return(rankmatrix_R(dX))

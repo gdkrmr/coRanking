@@ -6,7 +6,7 @@
 #' \code{image} function internaly, \code{...} is passed down to the image
 #' function. The values in the co-ranking matrix are logscaled for
 #' better contrast.
-#' 
+#'
 #' @param Q of class \code{coranking}.
 #' @param legend if \code{T} plot a legend.
 #' @param lwd linewidth in legend
@@ -23,20 +23,19 @@
 #' @export
 imageplot <- function(Q, lwd = 2, bty = "n", main = "co-ranking matrix",
                       xlab = expression(R), ylab = expression(Ro),
-                      col = colorRampPalette(
-                          colors = c("gray85", "red", "yellow",
-                                     "green", "blue")
-                      )(100),
-                      axes = FALSE, legend = TRUE, ...){
+                      col = colorRampPalette(colors = c("gray85", "red",
+                                                        "yellow", "green",
+                                                        "blue"))(100),
+                      axes = FALSE, legend = TRUE, ...) {
     graphics::image.default(log(t(apply(Q, 2, rev))),
                             axes = axes,
                             main = main,
                             ...)
-    if (!axes){
+    if (!axes) {
         graphics::axis(2, at = c(0, 1), labels = c(nrow(Q), 1))
         graphics::axis(3, at = c(0, 1), labels = c(1, nrow(Q)))
     }
-    if (legend){
+    if (legend) {
         lgd <- rep("", 100)
         lgd[100] <- "log(0)"
         lgd[1] <- paste0("log(", max(Q), ")")
