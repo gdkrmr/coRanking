@@ -4,14 +4,22 @@
 \alias{coranking}
 \title{Co-Ranking Matrix}
 \usage{
-coranking(Xi, X, input = c("data", "dist", "rank"), use = "C")
+coranking(
+  Xi,
+  X,
+  input_Xi = c("data", "dist", "rank"),
+  input_X = input_Xi,
+  use = "C"
+)
 }
 \arguments{
 \item{Xi}{high dimensional data}
 
 \item{X}{low dimensional data}
 
-\item{input}{type of input (see. details)}
+\item{input_Xi}{type of input of Xi (see. details)}
+
+\item{input_X}{type of input of X (see. details)}
 
 \item{use}{\code{R} or \code{C} backend}
 }

@@ -1,3 +1,4 @@
+
 rnx2qnx <- function(rnx, K = seq_along(rnx), N = length(rnx) + 1) {
   (rnx * (N - 1 - K) + K) / (N - 1)
 }
@@ -19,7 +20,7 @@ Q_NX <- function(Q) {
 #' A curve indicating the improvement of the embedding over a random embedding.
 #' Values range from 0, for a random embedding, to 1 for a perfect embedding.
 #'
-#' \deqn{ Q_{NX}(K) = \sum_{1\leq k\leq K}\sum_{1\leq l\leq K} \frac{q_{kl}{KN}} }
+#' \deqn{ Q_{NX}(K) = \sum_{1\leq k\leq K}\sum_{1\leq l\leq K} \frac{q_{kl}}{KN} }
 #' Counts the upper left K-by-K block of Q, i.e. it considers the preserved
 #' ranks on the diagonal and the permutations within a neighborhood.
 #'
@@ -36,11 +37,14 @@ R_NX <- function(Q) {
 }
 
 
-#' AUC_{\ln K}(R_{NX}(K))
+#' AUC_ln_K
 #'
 #' Area under the R_NX(K) curve when K is put on a logarithmic scale.
 #'
-#' @param R_NX
+#' @param R_NX The R_NX curve, a vector of values
+#' @return A value, the area under the curve.
+#' @author Guido Kraemer
+#' @export
 AUC_ln_K <- function(R_NX) {
   K <- seq_along(R_NX)
   return(sum(R_NX / K) / sum(1 / K))
@@ -58,7 +62,7 @@ AUC_ln_K <- function(R_NX) {
 #' @return A ggplot object.
 #' @author Guido Kraemer
 #' @export
-plot_R_NX <- function(R_NXs, pal = palette(), ylim = c(0, 0.9)) {
+plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
 
   if (length(R_NXs) > 1) {
     l  <- length(R_NXs[[1]])
@@ -77,31 +81,31 @@ plot_R_NX <- function(R_NXs, pal = palette(), ylim = c(0, 0.9)) {
   N <- nrow(df)
   df$K <- seq_len(N)
 
-  plot(x = 1, y = 1,
-       xlim = c(1, N), ylim = ylim,
-       log = "x",
-       type = "n", bty = "n",
-       ylab = expression(R[NX](K)), xlab = "K",
-       xaxt = "n", las = 1,
-       yaxs = "i", xaxs = "i")
-
-  axis(1, at = 10^(0:floor(log10(N))),
-       labels = sapply(0:floor(log10(N)),
-                       function(i) parse(text = paste0("10^", i))))
+  graphics::plot(x = 1, y = 1,
+                 xlim = c(1, N), ylim = ylim,
+                 log = "x",
+                 type = "n", bty = "n",
+                 ylab = expression(R[NX](K)), xlab = "K",
+                 xaxt = "n", las = 1,
+                 yaxs = "i", xaxs = "i")
+ 
+  graphics::axis(1, at = 10^(0:floor(log10(N))),
+                 labels = sapply(0:floor(log10(N)),
+                                 function(i) parse(text = paste0("10^", i))))
 
   for (i in seq(0.1, 0.9, by = 0.1)) {
-    abline(h = i, lty = 3, lwd = 0.5)
-    lines(qnx2rnx(i, 1:N, N), lty = 3, lwd = 0.5)
+    graphics::abline(h = i, lty = 3, lwd = 0.5)
+    graphics::lines(qnx2rnx(i, 1:N, N), lty = 3, lwd = 0.5)
   }
 
   for (i in seq_along(names(R_NXs))) {
     n <- names(R_NXs)[i]
     cat(pal[i], "\n")
-    lines(x = df$K, y = df[[n]], col = pal[i])
+    graphics::lines(x = df$K, y = df[[n]], col = pal[i])
   }
 
-  legend("topright",
-         col = pal[seq_along(R_NXs)],
-         legend = paste(sprintf("%0.2f", auc_list), names(R_NXs)),
-         lty = 1, bg = "white")
+  graphics::legend("topright",
+                   col = pal[seq_along(R_NXs)],
+                   legend = paste(sprintf("%0.2f", auc_list), names(R_NXs)),
+                   lty = 1, bg = "white")
 }

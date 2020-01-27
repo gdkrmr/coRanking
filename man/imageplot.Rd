@@ -4,10 +4,18 @@
 \alias{imageplot}
 \title{Image function for the co-ranking matrix}
 \usage{
-imageplot(Q, lwd = 2, bty = "n", main = "co-ranking matrix",
-  xlab = expression(R), ylab = expression(Ro),
-  col = colorRampPalette(colors = c("gray85", "red", "yellow", "green",
-  "blue"))(100), axes = FALSE, legend = TRUE, ...)
+imageplot(
+  Q,
+  lwd = 2,
+  bty = "n",
+  main = "co-ranking matrix",
+  xlab = expression(R),
+  ylab = expression(Ro),
+  col = colorRampPalette(colors = c("gray85", "red", "yellow", "green", "blue"))(100),
+  axes = FALSE,
+  legend = TRUE,
+  ...
+)
 }
 \arguments{
 \item{Q}{of class \code{coranking}.}

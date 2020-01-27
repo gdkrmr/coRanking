@@ -13,7 +13,7 @@ Imports:
     methods,
     graphics,
     stats
-RoxygenNote: 6.1.0
+RoxygenNote: 7.0.2
 Collate:
     'coranking-package.R'
     'coranking.R'
@@ -23,6 +23,7 @@ Collate:
     'image.R'
     'rankmatrix.R'
     'submatrix.R'
+    'r_nx.R'
 Suggests:
     testthat,
     knitr,
