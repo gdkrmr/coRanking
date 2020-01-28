@@ -31,6 +31,11 @@ Q_NX <- function(Q) {
 #' @param Q a co-ranking matrix
 #' @return A vector with the values for R_NX(K)
 #' @author Guido Kraemer
+#' @references
+#' Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+#'   similarities in stochastic neighbour embedding: Reducing dimensionality
+#'   while preserving both local and global structure. Neurocomputing, 169,
+#'   246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 #' @export
 R_NX <- function(Q) {
   qnx2rnx(Q_NX(Q))
@@ -44,6 +49,11 @@ R_NX <- function(Q) {
 #' @param R_NX The R_NX curve, a vector of values
 #' @return A value, the area under the curve.
 #' @author Guido Kraemer
+#' @references
+#' Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+#'   similarities in stochastic neighbour embedding: Reducing dimensionality
+#'   while preserving both local and global structure. Neurocomputing, 169,
+#'   246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 #' @export
 AUC_ln_K <- function(R_NX) {
   K <- seq_along(R_NX)
@@ -59,8 +69,13 @@ AUC_ln_K <- function(R_NX) {
 #'   legend.
 #' @param pal a vector of colors
 #' @param ylim set the y-axis limits of the plot
-#' @return A ggplot object.
+#' @return Nothing, produces a plot.
 #' @author Guido Kraemer
+#' @references
+#' Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+#'   similarities in stochastic neighbour embedding: Reducing dimensionality
+#'   while preserving both local and global structure. Neurocomputing, 169,
+#'   246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 #' @export
 plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
 

@@ -15,10 +15,16 @@ legend.}
 \item{ylim}{set the y-axis limits of the plot}
 }
 \value{
-A ggplot object.
+Nothing, produces a plot.
 }
 \description{
 Produces a plot with the R_NX curves from the arguments
+}
+\references{
+Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+  similarities in stochastic neighbour embedding: Reducing dimensionality
+  while preserving both local and global structure. Neurocomputing, 169,
+  246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 }
 \author{
 Guido Kraemer

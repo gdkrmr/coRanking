@@ -93,5 +93,7 @@ test_that("larger data", {
 
 test_that("dist object", {
   expect_equal(coranking(dist(df1), df1, input_Xi = "dist", input_X = "data"),
-               structure(diag(4, 3, 3), dimnames = list(Ro = 1:3, R = 1:3), class = "coranking"))
+               structure(diag(4, 3, 3),
+                         dimnames = list(Ro = 1:3, R = 1:3),
+                         class = "coranking"))
 })

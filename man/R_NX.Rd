@@ -25,6 +25,12 @@ ranks on the diagonal and the permutations within a neighborhood.
 corresponds to a random embedding, a value of 1 to a perfect embedding of the
 K-ary neighborhood.
 }
+\references{
+Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+  similarities in stochastic neighbour embedding: Reducing dimensionality
+  while preserving both local and global structure. Neurocomputing, 169,
+  246–261. https://doi.org/10.1016/j.neucom.2014.12.095
+}
 \author{
 Guido Kraemer
 }

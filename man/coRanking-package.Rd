@@ -23,9 +23,13 @@ Institute for Biogeochemistry, Jena.
 Lee, J.A., Lee, J.A., Verleysen, M., 2009. Quality assessment of
     dimensionality reduction: Rank-based criteria. Neurocomputing 72.
 
-Chen, L., Buja, A., 2006. Local Multidimensional
-    Scaling for Nonlinear Dimension Reduction, Graph Layout and
-    Proximity Analysis.
+Chen, L., Buja, A., 2006. Local Multidimensional Scaling for Nonlinear
+  Dimension Reduction, Graph Layout and Proximity Analysis.
+
+Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+  similarities in stochastic neighbour embedding: Reducing dimensionality
+  while preserving both local and global structure. Neurocomputing, 169,
+  246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 }
 \seealso{
 Useful links:

@@ -15,6 +15,12 @@ A value, the area under the curve.
 \description{
 Area under the R_NX(K) curve when K is put on a logarithmic scale.
 }
+\references{
+Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
+  similarities in stochastic neighbour embedding: Reducing dimensionality
+  while preserving both local and global structure. Neurocomputing, 169,
+  246–261. https://doi.org/10.1016/j.neucom.2014.12.095
+}
 \author{
 Guido Kraemer
 }
