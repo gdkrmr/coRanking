@@ -27,32 +27,26 @@ coranking <- function(Xi, X,
   input_Xi <- match.arg(input_Xi, c("data", "dist", "rank"))
   input_X <- match.arg(input_X, c("data", "dist", "rank"))
 
-    if (input_Xi == "data" || input_Xi == "dist") {
-      if (input_Xi == "dist" && !isSymmetric(Xi))
-        stop("input must be symmetric")
+  if (input_Xi == "data" || input_Xi == "dist")
+    rXi <- rankmatrix(Xi, input = input_Xi,  use = use)
+  else
+    rXi <- Xi
 
-      rXi <- rankmatrix(Xi, input = input_Xi,  use = use)
-    } else {
-      rXi <- Xi
-    }
 
-    if(input_X == "data" || input_X == "dist") {
-      if (input_X == "dist" && !isSymmetric(X))
-        stop("input must be symmetric")
+  if (input_X == "data" || input_X == "dist")
+    rX <- rankmatrix(X, input = input_X, use = use)
+  else
+    rX <- X
 
-      rX <- rankmatrix(X, input = input_X, use = use)
-    } else {
-      rX <- X
-    }
 
-    if (!all.equal(dim(rXi)[1], dim(rXi)[2], dim(rX)[1], dim(rX)[2]))
-      stop("input must be the same size and square matrices")
-    if (!is.integer(rXi) || !is.integer(rX))
-      stop("input must be integer")
+  if (!all.equal(dim(rXi)[1], dim(rXi)[2], dim(rX)[1], dim(rX)[2]))
+    stop("input must be the same size and square matrices")
+  if (!is.integer(rXi) || !is.integer(rX))
+    stop("input must be integer")
 
-    if (use == "C") {
-      return(coranking_C(rXi, rX))
-    } else {
-      return(coranking_R(rXi, rX))
-    }
+  if (use == "C") {
+    return(coranking_C(rXi, rX))
+  } else {
+    return(coranking_R(rXi, rX))
+  }
 }
