@@ -24,8 +24,8 @@ coranking <- function(Xi, X,
                       input_X = input_Xi,
                       use = "C") {
 
-    input_X <- match.arg(input_Xi)
-    input_Xi <- match.arg(input_Xi)
+  input_Xi <- match.arg(input_Xi, c("data", "dist", "rank"))
+  input_X <- match.arg(input_X, c("data", "dist", "rank"))
 
     if (input_Xi == "data" || input_Xi == "dist") {
       if (input_Xi == "dist" && !isSymmetric(Xi))
