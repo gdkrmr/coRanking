@@ -11,7 +11,7 @@ qnx2rnx <- function(qnx, K = seq_along(qnx), N = length(qnx) + 1) {
 Q_NX <- function(Q) {
   nQ <- nrow(Q)
   N <- nQ + 1
- 
+
   diag(apply(apply(Q, 2, cumsum), 1, cumsum)) / seq_len(nQ) / N
 }
 
