@@ -31,12 +31,10 @@ Calculate the co-ranking matrix to assess the quality of a
 diminsionality reduction.
 }
 \details{
-Calculate the coranking matrix, to assess the quality of a
-dimensionality reduction.  \code{Xi} is input in high dimensions,
-\code{X} is input in low dimensions the type of input is given in
-\code{input}, if \code{input = 'data'} it will be transformed into
-a distance matrix with the \code{dist} function, id \code{input ==
-'rank'}, \code{Xi} and \code{X} are expected do be rank matrices.
+Calculate the coranking matrix, to assess the quality of a dimensionality
+reduction. \code{Xi} is input in high dimensions, \code{X} is input in low
+dimensions the type of input is given in \code{input_Xi} and \code{input_X},
+they can be one of \code{c('data', 'dist', 'rank')}.
 }
 \seealso{
 \code{\link{rankmatrix}}

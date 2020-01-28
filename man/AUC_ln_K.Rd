@@ -2,7 +2,7 @@
 % Please edit documentation in R/r_nx.R
 \name{AUC_ln_K}
 \alias{AUC_ln_K}
-\title{AUC_ln_K}
+\title{Area under the \code{RN_X} curve}
 \usage{
 AUC_ln_K(R_NX)
 }
@@ -13,7 +13,11 @@ AUC_ln_K(R_NX)
 A value, the area under the curve.
 }
 \description{
-Area under the R_NX(K) curve when K is put on a logarithmic scale.
+Area under the \eqn{R_{NX}(K)} curve when \eqn{K} is put on a logarithmic scale.
+}
+\details{
+It is calculated as:
+\deqn{ AUC_{\ln K}(R_{NX}(K)) = \left(\sum_{K=1}^{N-2}R_{NX}(K)/K\right)/\left(\sum_{K=1}^{N-2}1/K\right) }
 }
 \references{
 Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale

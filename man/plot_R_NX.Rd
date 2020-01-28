@@ -2,23 +2,25 @@
 % Please edit documentation in R/r_nx.R
 \name{plot_R_NX}
 \alias{plot_R_NX}
-\title{Plot the R_NX curve}
+\title{Plot the \eqn{R_{NX}(K)} curve}
 \usage{
-plot_R_NX(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9))
+plot_R_NX(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9), ...)
 }
 \arguments{
 \item{R_NXs}{A list of R_NX curves, names from the list will appear in the
-legend.}
+legend}
 
 \item{pal}{a vector of colors}
 
 \item{ylim}{set the y-axis limits of the plot}
+
+\item{...}{options for the plotting function}
 }
 \value{
 Nothing, produces a plot.
 }
 \description{
-Produces a plot with the R_NX curves from the arguments
+Produces a plot with the \eqn{R_{NX}(K)} curves from the arguments
 }
 \references{
 Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale

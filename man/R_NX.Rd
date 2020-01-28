@@ -2,7 +2,7 @@
 % Please edit documentation in R/r_nx.R
 \name{R_NX}
 \alias{R_NX}
-\title{The R_NX criterion}
+\title{The \eqn{R_{NX}(K)} criterion}
 \usage{
 R_NX(Q)
 }
@@ -13,19 +13,24 @@ R_NX(Q)
 A vector with the values for R_NX(K)
 }
 \description{
-A curve indicating the improvement of the embedding over a random embedding.
-Values range from 0, for a random embedding, to 1 for a perfect embedding.
+A curve indicating the improvement of the embedding over a random embedding
+for the neighborhood size \eqn{K}. Values range from 0, for a random
+embedding, to 1 for a perfect embedding.
 }
 \details{
+\eqn{R_{NX}(K)} is calculated as follows:
 \deqn{ Q_{NX}(K) = \sum_{1\leq k\leq K}\sum_{1\leq l\leq K} \frac{q_{kl}}{KN} }
-Counts the upper left K-by-K block of Q, i.e. it considers the preserved
+Counts the upper left \eqn{K}-by-\eqn{K} block of \eqn{Q}, i.e. it considers the preserved
 ranks on the diagonal and the permutations within a neighborhood.
 
 \deqn{ R_{NX}(K) = \frac{(N-1)Q_{NX}(K)-K}{N-1-K} } A resulting vale of 0
 corresponds to a random embedding, a value of 1 to a perfect embedding of the
-K-ary neighborhood.
+\eqn{K}-ary neighborhood.
 }
 \references{
+Lee, J.A., Lee, J.A., Verleysen, M., 2009. Quality assessment of
+    dimensionality reduction: Rank-based criteria. Neurocomputing 72.
+
 Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
   similarities in stochastic neighbour embedding: Reducing dimensionality
   while preserving both local and global structure. Neurocomputing, 169,

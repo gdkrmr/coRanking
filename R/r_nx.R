@@ -15,23 +15,28 @@ Q_NX <- function(Q) {
   diag(apply(apply(Q, 2, cumsum), 1, cumsum)) / seq_len(nQ) / N
 }
 
-#' The R_NX criterion
+#' The \eqn{R_{NX}(K)} criterion
 #'
-#' A curve indicating the improvement of the embedding over a random embedding.
-#' Values range from 0, for a random embedding, to 1 for a perfect embedding.
+#' A curve indicating the improvement of the embedding over a random embedding
+#' for the neighborhood size \eqn{K}. Values range from 0, for a random
+#' embedding, to 1 for a perfect embedding.
 #'
+#' \eqn{R_{NX}(K)} is calculated as follows:
 #' \deqn{ Q_{NX}(K) = \sum_{1\leq k\leq K}\sum_{1\leq l\leq K} \frac{q_{kl}}{KN} }
-#' Counts the upper left K-by-K block of Q, i.e. it considers the preserved
+#' Counts the upper left \eqn{K}-by-\eqn{K} block of \eqn{Q}, i.e. it considers the preserved
 #' ranks on the diagonal and the permutations within a neighborhood.
 #'
 #' \deqn{ R_{NX}(K) = \frac{(N-1)Q_{NX}(K)-K}{N-1-K} } A resulting vale of 0
 #' corresponds to a random embedding, a value of 1 to a perfect embedding of the
-#' K-ary neighborhood.
+#' \eqn{K}-ary neighborhood.
 #'
 #' @param Q a co-ranking matrix
 #' @return A vector with the values for R_NX(K)
 #' @author Guido Kraemer
 #' @references
+#' Lee, J.A., Lee, J.A., Verleysen, M., 2009. Quality assessment of
+#'     dimensionality reduction: Rank-based criteria. Neurocomputing 72.
+#'
 #' Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
 #'   similarities in stochastic neighbour embedding: Reducing dimensionality
 #'   while preserving both local and global structure. Neurocomputing, 169,
@@ -42,9 +47,12 @@ R_NX <- function(Q) {
 }
 
 
-#' AUC_ln_K
+#' Area under the \code{RN_X} curve
 #'
-#' Area under the R_NX(K) curve when K is put on a logarithmic scale.
+#' Area under the \eqn{R_{NX}(K)} curve when \eqn{K} is put on a logarithmic scale.
+#'
+#' It is calculated as:
+#' \deqn{ AUC_{\ln K}(R_{NX}(K)) = \left(\sum_{K=1}^{N-2}R_{NX}(K)/K\right)/\left(\sum_{K=1}^{N-2}1/K\right) }
 #'
 #' @param R_NX The R_NX curve, a vector of values
 #' @return A value, the area under the curve.
@@ -61,14 +69,15 @@ AUC_ln_K <- function(R_NX) {
 }
 
 
-#' Plot the R_NX curve
+#' Plot the \eqn{R_{NX}(K)} curve
 #'
-#' Produces a plot with the R_NX curves from the arguments
+#' Produces a plot with the \eqn{R_{NX}(K)} curves from the arguments
 #'
 #' @param R_NXs A list of R_NX curves, names from the list will appear in the
-#'   legend.
+#'   legend
 #' @param pal a vector of colors
 #' @param ylim set the y-axis limits of the plot
+#' @param ... options for the plotting function
 #' @return Nothing, produces a plot.
 #' @author Guido Kraemer
 #' @references
@@ -77,7 +86,7 @@ AUC_ln_K <- function(R_NX) {
 #'   while preserving both local and global structure. Neurocomputing, 169,
 #'   246–261. https://doi.org/10.1016/j.neucom.2014.12.095
 #' @export
-plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
+plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9), ...) {
 
   if (length(R_NXs) > 1) {
     l  <- length(R_NXs[[1]])
@@ -90,7 +99,7 @@ plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
     stop("R_NX values should not have a dimension.")
 
   auc_list <- lapply(R_NXs, AUC_ln_K)
-  
+
   df <- data.frame(R_NXs, check.names = FALSE)
 
   N <- nrow(df)
@@ -102,8 +111,8 @@ plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
                  type = "n", bty = "n",
                  ylab = expression(R[NX](K)), xlab = "K",
                  xaxt = "n", las = 1,
-                 yaxs = "i", xaxs = "i")
- 
+                 yaxs = "i", xaxs = "i", ...)
+
   graphics::axis(1, at = 10^(0:floor(log10(N))),
                  labels = sapply(0:floor(log10(N)),
                                  function(i) parse(text = paste0("10^", i))))
@@ -115,7 +124,6 @@ plot_R_NX <- function(R_NXs, pal = grDevices::palette(), ylim = c(0, 0.9)) {
 
   for (i in seq_along(names(R_NXs))) {
     n <- names(R_NXs)[i]
-    cat(pal[i], "\n")
     graphics::lines(x = df$K, y = df[[n]], col = pal[i])
   }
 
