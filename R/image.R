@@ -44,7 +44,6 @@ imageplot <- function(Q, lwd = 2, bty = "n", main = "co-ranking matrix",
                lwd = lwd,
                y.intersp = lwd / 20,
                col = rev(col),
-               bty = bty,
-               ...)
+               bty = bty)
     }
 }
