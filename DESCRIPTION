@@ -5,7 +5,7 @@ Author: Guido Kraemer
 Maintainer: Guido Kraemer <gkraemer@bgc-jena.mpg.de>
 Description: Calculates the co-ranking matrix to assess the
     quality of a dimensionality reduction.
-URL: https://github.com/gdkrmr/coRanking
+URL: https://www.guido-kraemer.com/software/coranking/
 BugReports: https://github.com/gdkrmr/coRanking/issues
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
