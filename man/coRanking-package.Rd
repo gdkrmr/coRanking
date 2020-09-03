@@ -20,11 +20,15 @@ Empirical Inference of the Earth System Group, at the Max Plack
 Institute for Biogeochemistry, Jena.
 }
 \references{
+Chen, L., Buja, A., 2006. Local Multidimensional Scaling for Nonlinear
+  Dimension Reduction, Graph Layout and Proximity Analysis.
+
 Lee, J.A., Lee, J.A., Verleysen, M., 2009. Quality assessment of
     dimensionality reduction: Rank-based criteria. Neurocomputing 72.
 
-Chen, L., Buja, A., 2006. Local Multidimensional Scaling for Nonlinear
-  Dimension Reduction, Graph Layout and Proximity Analysis.
+Lueks, W., Mokbel, B., Biehl, M., & Hammer, B. (2011). How to
+  Evaluate Dimensionality Reduction? - Improving the Co-ranking Matrix.
+  ArXiv:1110.3917 [Cs]. http://arxiv.org/abs/1110.3917
 
 Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
   similarities in stochastic neighbour embedding: Reducing dimensionality
@@ -34,7 +38,7 @@ Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/gdkrmr/coRanking}
+  \item \url{https://www.guido-kraemer.com/software/coranking/}
   \item Report bugs at \url{https://github.com/gdkrmr/coRanking/issues}
 }
 

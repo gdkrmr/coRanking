@@ -8,6 +8,21 @@ qnx2rnx <- function(qnx, K = seq_along(qnx), N = length(qnx) + 1) {
   rnx[-length(rnx)]
 }
 
+#' The \eqn{Q_{NX}(K)} criterion
+#'
+#' A curve indicating the percentage of points that are mild in- and extrusions
+#' or keep their rank.
+#'
+#' \deqn{ Q_{NX}(K) = \frac{1}{KN} \sum_{k=1}^{K}\sum_{l=1}^{K}Q_{kl} }
+#'
+#' @param Q a co-ranking matrix
+#' @return A vector with the values for Q_NX(K)
+#' @author Guido Kraemer
+#' @references
+#' Lueks, W., Mokbel, B., Biehl, M., & Hammer, B. (2011). How to
+#'   Evaluate Dimensionality Reduction? - Improving the Co-ranking Matrix.
+#'   ArXiv:1110.3917 [Cs]. http://arxiv.org/abs/1110.3917
+#' @export
 Q_NX <- function(Q) {
   nQ <- nrow(Q)
   N <- nQ + 1

@@ -2,6 +2,7 @@
 
 export(AUC_ln_K)
 export(LCMC)
+export(Q_NX)
 export(R_NX)
 export(coranking)
 export(imageplot)
