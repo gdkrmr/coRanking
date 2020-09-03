@@ -85,13 +85,26 @@ could be defined as:
 
 $$Q_{NX}(K) = \frac{1}{KN} \sum_{k=1}^{K}\sum_{l=1}^{K}Q_{kl}$$
 
-```{r, fig.show="hold", fig.width = 7, fig.height = 7, out.width = "45%"}
-qnx.tsne <- Q_NX(Q.tsne)
-qnx.pca <- Q_NX(Q.pca)
-Kmax.tsne <- which.max(qnx.tsne)
-Kmax.pca <- which.max(qnx.pca)
-plot(qnx.tsne, main = "t-SNE", xlab = "K", ylab = expression(Q[NX]), type = "l")
-plot(qnx.pca, main = "PCA", xlab = "K", ylab = expression(Q[NX]), type = "l")
+The values of $Q_{NX}(K)$ are split into local and global values by 
+
+$$K_\max = \arg\max_K\text{LCMC}(K) = \arg\max_K\left(Q_{NX} - \frac{K}{N-1}\right)$$
+
+```{r, fig.show="hold", fig.width = 7, fig.height = 7}
+qnx.tsne <- coRanking:::Q_NX(Q.tsne)
+qnx.pca <- coRanking:::Q_NX(Q.pca)
+lcmc.tsne <- LCMC(Q.tsne)
+lcmc.pca <- LCMC(Q.pca)
+Kmax.tsne <- which.max(lcmc.tsne)
+Kmax.pca <- which.max(lcmc.pca)
+
+yrange <- range(c(qnx.tsne, qnx.pca))
+plot(qnx.tsne, xlab = "K", ylab = expression(Q[NX]), type = "l", ylim = yrange, col = 1)
+abline(v = Kmax.tsne, col = 1, lty = 2)
+text(Kmax.tsne, mean(yrange) + 0.1, expression(K[max]), col = 1, pos = 4)
+lines(qnx.pca, main = "PCA", xlab = "K", ylab = expression(Q[NX]), ylim = 0:1, col = 2)
+abline(v = Kmax.pca, col = 2, lty = 2)
+text(Kmax.pca, mean(yrange) - 0.1, expression(K[max]), col = 2, pos = 4)
+legend("bottomright", legend = c("t-SNE", "PCA"), lty = 1, col = 1:2)
 ```
 
 $Q_\text{local}$ is the mean over the values left of the maximum,
