@@ -30,7 +30,7 @@ data <- as.data.frame(data, stringsAsFactors = F)
 ```
 
 # Introduction
- 
+
 The co-ranking matrix is a tool to assess the quality of a dimensionality reduciton.
 
 The fishbowl data set consists of a sphere with a hole on top:
@@ -39,7 +39,7 @@ scatterplot3d(data$x, data$y, data$z,
               xlab = "x", ylab = "y", zlab = "z",
               color = data$col)
  ```
- 
+
 Dimensionality reductions:
 ```{r, fig.show="hold", fig.width = 7, fig.height = 7, out.width = "45%"}
 dim.red <- list()
@@ -64,7 +64,7 @@ Q.tsne <- coranking(data[c("x", "y", "z")], dim.red$tsne$Y)
 Q.pca <- coranking(data[c("x", "y", "z")], dim.red$pca$scores[, 1:2])
 imageplot(Q.tsne, main = "t-SNE")
 imageplot(Q.pca, main = "PCA")
-```	
+```
 
 As one can observe, the t-SNE *tears* the data, points that were
 close are far apart, e.g. the upper border of the fish bowl. This is
@@ -78,7 +78,7 @@ t-SNE also tends to keep the smaller distances between points,
 i.e. values close to the diagonal are higher in the upper left part, while
 PCA keeps the larger distances, i.e. the values close to the diagonal
 on the lower right are higher.
-	
+
 # A parameter free quality measure for dimensionality reduction
 Defined by Chen and Buja (2006). A general quality measure depending on $K$
 could be defined as:
