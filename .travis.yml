@@ -8,6 +8,7 @@ r:
   - devel
 
 before_install:
+  - mkdir $HOME/.R
   - Rscript -e "update.packages(ask = FALSE)"
   - Rscript -e "if (!'covr' %in% rownames(installed.packages())) install.packages('covr')"
   - Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
