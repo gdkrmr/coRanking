@@ -80,32 +80,30 @@ PCA keeps the larger distances, i.e. the values close to the diagonal
 on the lower right are higher.
 
 # A parameter free quality measure for dimensionality reduction
-Defined by Chen and Buja (2006). A general quality measure depending on $K$
+Defined by Lueks et al. (2011). A general quality measure depending on $K$
 could be defined as:
 
-$$\text{LCMC}(K) = \frac {1}{KN} \sum_{i,j\in {1, \ldots, K}} q_{i,j} - \frac{K}{N - 1}$$
+$$Q_{NX}(K) = \frac{1}{KN} \sum_{k=1}^{K}\sum_{l=1}^{K}Q_{kl}$$
 
 ```{r, fig.show="hold", fig.width = 7, fig.height = 7, out.width = "45%"}
-lcmc.tsne <- numeric(nrow(Q.tsne))
-lcmc.pca <- numeric(nrow(Q.tsne))
-lcmc.tsne <- LCMC(Q.tsne)
-lcmc.pca <- LCMC(Q.pca)
-Kmax.tsne <- which.max(lcmc.tsne)
-Kmax.pca <- which.max(lcmc.pca)
-plot(lcmc.tsne, main = "t-SNE", xlab = "K", ylab = "LCMC", type = "l")
-plot(lcmc.pca, main = "PCA", xlab = "K", ylab = "LCMC", type = "l")
+qnx.tsne <- Q_NX(Q.tsne)
+qnx.pca <- Q_NX(Q.pca)
+Kmax.tsne <- which.max(qnx.tsne)
+Kmax.pca <- which.max(qnx.pca)
+plot(qnx.tsne, main = "t-SNE", xlab = "K", ylab = expression(Q[NX]), type = "l")
+plot(qnx.pca, main = "PCA", xlab = "K", ylab = expression(Q[NX]), type = "l")
 ```
 
 $Q_\text{local}$ is the mean over the values left of the maximum,
 $Q_\text{global}$ is the mean over the values right of the maximum.
 
-* *t-SNE*: 
+* *t-SNE*:
 	+ $K_\text{max}    = `r Kmax.tsne`$
-	+ $Q_\text{local}  = `r mean(lcmc.tsne[1:Kmax.tsne])`$
-	+ $Q_\text{global} = `r mean(lcmc.tsne[(Kmax.tsne + 1):nrow(Q.tsne)])`$
-* *PCA*: 
+	+ $Q_\text{local}  = `r mean(qnx.tsne[1:Kmax.tsne])`$
+	+ $Q_\text{global} = `r mean(qnx.tsne[(Kmax.tsne + 1):nrow(Q.tsne)])`$
+* *PCA*:
 	+ $K_\text{max}    = `r Kmax.pca`$
-	+ $Q_\text{local}  = `r mean(lcmc.pca[1:Kmax.pca])`$
-	+ $Q_\text{global} = `r mean(lcmc.pca[(Kmax.pca + 1):nrow(Q.pca)])`$
-	
+	+ $Q_\text{local}  = `r mean(qnx.pca[1:Kmax.pca])`$
+	+ $Q_\text{global} = `r mean(qnx.pca[(Kmax.pca + 1):nrow(Q.pca)])`$
+
 $Q_\text{local}$ is considered to be more important than $Q_\text{global}$.
