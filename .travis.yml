@@ -1,6 +1,6 @@
 language: r
 cache: packages
-sudo: false
+# sudo: false
 
 r:
   - oldrel
@@ -14,8 +14,8 @@ before_install:
   - Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
   - Rscript -e "if (!'devtools' %in% rownames(installed.packages())) install.packages('devtools')"
 
-before_script:
-  - Rscript -e "pkgbuild::compile_dll(); devtools::document()"
+# before_script:
+#   - Rscript -e "pkgbuild::compile_dll(); devtools::document()"
 
 # Only report coverage for the release version
 after_success:
