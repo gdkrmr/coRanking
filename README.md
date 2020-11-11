@@ -1,4 +1,5 @@
 # coRanking
+![R](https://github.com/gdkrmr/coRanking/workflows/R/badge.svg?branch=master)
 [![Travis Build Status](https://travis-ci.org/gdkrmr/coRanking.svg?branch=master)](https://travis-ci.org/gdkrmr/coRanking)
 [![Coverage Status](https://img.shields.io/codecov/c/github/gdkrmr/coRanking/master.svg)](https://codecov.io/github/gdkrmr/coRanking?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/coRanking)](https://cran.r-project.org/package=coRanking)
