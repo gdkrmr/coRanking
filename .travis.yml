@@ -8,11 +8,11 @@ r:
   - devel
 
 before_install:
-  - mkdir $HOME/.R
-  - Rscript -e "update.packages(ask = FALSE)"
-  - Rscript -e "if (!'covr' %in% rownames(installed.packages())) install.packages('covr')"
-  - Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
-  - Rscript -e "if (!'devtools' %in% rownames(installed.packages())) install.packages('devtools')"
+  # - mkdir $HOME/.R
+  - sudo Rscript -e "update.packages(ask = FALSE)"
+  - sudo Rscript -e "if (!'covr' %in% rownames(installed.packages())) install.packages('covr')"
+  - sudo Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
+  - sudo Rscript -e "if (!'devtools' %in% rownames(installed.packages())) install.packages('devtools')"
 
 # before_script:
 #   - Rscript -e "pkgbuild::compile_dll(); devtools::document()"
