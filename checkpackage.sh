@@ -3,7 +3,7 @@
 
 # R_FOLDER=/usr/bin
 # R_FOLDER=$HOME/progs/R/R-3.5.1/bin
-R_FOLDER=$HOME/progs/R/R-3.6.2/bin
+R_FOLDER=$HOME/progs/R/R-4.1.1/bin
 
 echo "BUILDING DOCUMENTATION"
 $R_FOLDER/Rscript -e 'devtools::document()'
