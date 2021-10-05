@@ -1,8 +1,7 @@
 # coRanking
 ![R](https://github.com/gdkrmr/coRanking/workflows/R/badge.svg?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/coRanking)](https://cran.r-project.org/package=coRanking)
-[![DOI](https://zenodo.org/badge/69355803.svg)](https://zenodo.org/badge/latestdoi/69355803)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5549605.svg)](https://doi.org/10.5281/zenodo.5549605)
 
 The Co-Ranking Matrix
 
