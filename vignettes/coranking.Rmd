@@ -38,7 +38,7 @@ The fishbowl data set consists of a sphere with a hole on top:
 scatterplot3d(data$x, data$y, data$z,
               xlab = "x", ylab = "y", zlab = "z",
               color = data$col)
- ```
+```
 
 Dimensionality reductions:
 ```{r, fig.show="hold", fig.width = 7, fig.height = 7, out.width = "45%"}
