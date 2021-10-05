@@ -1,5 +1,5 @@
 # coRanking
-![R](https://github.com/gdkrmr/coRanking/workflows/R/badge.svg?branch=master)
+[![R-CMD-check](https://github.com/gdkrmr/coRanking/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gdkrmr/coRanking/actions/workflows/R-CMD-check.yaml)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/coRanking)](https://cran.r-project.org/package=coRanking)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3365908.svg)](https://doi.org/10.5281/zenodo.3365908)
 
