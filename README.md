@@ -1,5 +1,6 @@
 # coRanking
 [![R](https://github.com/gdkrmr/DRR/actions/workflows/r.yml/badge.svg)](https://github.com/gdkrmr/DRR/actions/workflows/r.yml)
+[![codecov](https://codecov.io/gh/gdkrmr/coRanking/branch/master/graph/badge.svg?token=vEkHGuhNHQ)](https://codecov.io/gh/gdkrmr/coRanking)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/coRanking)](https://cran.r-project.org/package=coRanking)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3365908.svg)](https://doi.org/10.5281/zenodo.3365908)
 
