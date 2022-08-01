@@ -2,7 +2,7 @@ Package: coRanking
 Title: Co-Ranking Matrix
 Version: 0.2.3.9001
 Authors@R: c(
-            person("Guido", "Kraemer", email = "gkraemer@bgc-jena.mpg.de", role = c("aut","cre"),
+            person("Guido", "Kraemer", email = "guido.kraemer@uni-leipzig.de", role = c("aut","cre"),
               comment = c(ORCID = "0000-0003-4865-5041")
             )
            )
