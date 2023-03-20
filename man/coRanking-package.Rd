@@ -43,3 +43,7 @@ Useful links:
 }
 
 }
+\author{
+\strong{Maintainer}: Guido Kraemer \email{guido.kraemer@uni-leipzig.de} (\href{https://orcid.org/0000-0003-4865-5041}{ORCID})
+
+}
