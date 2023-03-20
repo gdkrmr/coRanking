@@ -107,25 +107,15 @@ extern "C" {
 
   // registering R routines
 
-  static R_NativePrimitiveArgType S[] = {REALSXP};
-  static R_NativePrimitiveArgType SS[] = {REALSXP, REALSXP};
-
-  static const
-  R_CMethodDef cMethods[] = {
-                             {"C_coranking",  (DL_FUNC) &C_coranking,  2, SS},
-                             {"C_rankmatrix", (DL_FUNC) &C_rankmatrix, 1, S},
-                             {"C_euclidean",  (DL_FUNC) &C_euclidean,  1, S},
-                             {NULL, NULL, 0, NULL}};
-
-  static const
-  R_CallMethodDef callMethods[] = {
-                                   {"C_coranking",  (DL_FUNC) &C_coranking,  2},
-                                   {"C_rankmatrix", (DL_FUNC) &C_rankmatrix, 1},
-                                   {"C_euclidean",  (DL_FUNC) &C_euclidean,  1},
-                                   {NULL, NULL, 0}};
+  static const R_CallMethodDef callMethods[] = {
+    {"C_coranking",  (DL_FUNC) &C_coranking,  2},
+    {"C_rankmatrix", (DL_FUNC) &C_rankmatrix, 1},
+    {"C_euclidean",  (DL_FUNC) &C_euclidean,  1},
+    {NULL, NULL, 0}
+  };
 
   void R_init_coRanking(DllInfo *info) {
-    R_registerRoutines(info, cMethods, callMethods, NULL, NULL);
+    R_registerRoutines(info, NULL, callMethods, NULL, NULL);
     R_useDynamicSymbols(info, FALSE);
     R_forceSymbols(info, TRUE);
   }

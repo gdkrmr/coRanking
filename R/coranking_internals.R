@@ -17,7 +17,7 @@ euclidean_R <- function(X) {
 
 ##' @useDynLib coRanking C_euclidean
 euclidean_C <- function(X) {
-    .Call("C_euclidean", as.matrix(X))
+    .Call(C_euclidean, as.matrix(X))
 }
 
 rankmatrix_R <- function(X){
@@ -33,18 +33,18 @@ rankmatrix_R <- function(X){
 
 ##' @useDynLib coRanking C_rankmatrix
 rankmatrix_C <- function(X) {
-    .Call("C_rankmatrix", X)
+    .Call(C_rankmatrix, X)
 }
 
 coranking_R <- function(Ro, R) {
     ## remove neighborhood of size 0 and correct dimnames
     res <- table(Ro, R)[-1, -1]
-    dimnames(res) <- list(Ro = 1:nrow(res), R = 1:nrow(res))
+    dimnames(res) <- list(Ro = seq_len(nrow(res)), R = seq_len(nrow(res)))
     class(res) <- "coranking"
     res
 }
 
 ##' @useDynLib coRanking C_coranking
 coranking_C <- function(Ro, R) {
-    .Call("C_coranking", Ro, R)
+    .Call(C_coranking, Ro, R)
 }
