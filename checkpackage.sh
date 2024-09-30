@@ -2,7 +2,7 @@
 
 
 # R_FOLDER=/usr/bin
-# R_FOLDER=$HOME/progs/R/R-4.2.2/bin
+#R_FOLDER=$HOME/progs/R/R-4.4.1/bin
 R_FOLDER=$HOME/progs/R/R-devel/bin
 
 export R_REALLY_FORCE_SYMBOLS=1
