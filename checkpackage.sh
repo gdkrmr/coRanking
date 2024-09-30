@@ -7,6 +7,8 @@ R_FOLDER=$HOME/progs/R/R-devel/bin
 
 export R_REALLY_FORCE_SYMBOLS=1
 
+export _R_CXX_USE_NO_REMAP_=true 
+
 echo "BUILDING DOCUMENTATION"
 $R_FOLDER/Rscript -e 'devtools::document()'
 
