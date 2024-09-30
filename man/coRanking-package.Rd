@@ -38,7 +38,7 @@ Lee, J. A., Peluffo-Ordóñez, D. H., & Verleysen, M., 2015. Multi-scale
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://www.guido-kraemer.com/software/coranking/}
+  \item \url{https://coranking.guido-kraemer.com/}
   \item Report bugs at \url{https://github.com/gdkrmr/coRanking/issues}
 }
 
