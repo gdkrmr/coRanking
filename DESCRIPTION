@@ -8,7 +8,7 @@ Authors@R: c(
            )
 Description: Calculates the co-ranking matrix to assess the
     quality of a dimensionality reduction.
-URL: https://www.guido-kraemer.com/software/coranking/
+URL: https://coranking.guido-kraemer.com/
 BugReports: https://github.com/gdkrmr/coRanking/issues
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
