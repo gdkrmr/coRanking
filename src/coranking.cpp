@@ -55,7 +55,7 @@ void CORANKING::rankmatrix(const double* DD,
       while ( inds[iind] != i ) {
         //std::cout << "iind = " << iind << "; N = " << N << std::endl;
         iind++;
-        if(iind >= N) error("Error in C code: index out of range"); // can we guarantee that this will never happen?
+        if(iind >= N) Rf_error("Error in C code: index out of range"); // can we guarantee that this will never happen?
       }
 
       for(int j = iind; j > 0; j--) {
